@@ -109,7 +109,7 @@ export default function Home() {
             <p className="mt-3 text-base text-slate-600 sm:text-lg">Get consultation, practical guidance and support for everyday questions.</p>
           </div>
           <PricingCards />
-          <p className="mx-auto mt-5 max-w-3xl text-center text-xs leading-5 text-slate-500">Basic and Premium prices are shown per month. The current checkout processes a one-time payment and does not set up automatic monthly renewal. Available payment methods and final terms are shown in checkout.</p>
+          <p className="mx-auto mt-5 max-w-3xl text-center text-xs leading-5 text-slate-500">Basic and Premium are monthly plan rates, not automatic billing. No payments or payment details are accepted through this website; please enquire for service and payment arrangements.</p>
         </div>
       </section>
 

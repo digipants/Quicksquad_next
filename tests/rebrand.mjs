@@ -138,9 +138,9 @@ test('Google measurement waits for visitor consent and allows revocation', () =>
   assert.match(layout, /ad_storage': 'denied'/);
   assert.match(layout, /ad_user_data': 'denied'/);
   assert.match(layout, /ad_personalization': 'denied'/);
-  assert.doesNotMatch(layout, /googletagmanager\\.com\\/gtag\\/js/);
+  assert.doesNotMatch(layout, /googletagmanager\.com\/gtag\/js/);
   assert.match(consent, /enableGoogleTag &&/);
-  assert.match(consent, /window\\.gtag\\("consent", "update"/);
+  assert.match(consent, /window\.gtag\("consent", "update"/);
   assert.match(consent, /analytics: false, advertising: false/);
   assert.match(consent, /analytics: true, advertising: false/);
   assert.match(consent, /analytics: true, advertising: true/);
@@ -150,11 +150,11 @@ test('Google measurement waits for visitor consent and allows revocation', () =>
 
 test('enquiry lead event is privacy-safe and success-gated', () => {
   const contact = fs.readFileSync('src/app/contact/page.tsx', 'utf8');
-  assert.match(contact, /if \\(res\\.ok && data\\.success === true\\)/);
-  assert.match(contact, /preferences\\?\\.analytics === true/);
-  assert.match(contact, /gtag\\?\\.\\("event", "generate_lead", \\{ method: "consultation_form" \\}\\)/);
-  assert.match(contact, /if \\(submitting\\.current\\) return/);
-  assert.doesNotMatch(contact, /generate_lead[^\\n]*form\\./);
+  assert.match(contact, /if \(res\.ok && data\.success === true\)/);
+  assert.match(contact, /preferences\?\.analytics === true/);
+  assert.match(contact, /gtag\?\.\("event", "generate_lead", \{ method: "consultation_form" \}\)/);
+  assert.match(contact, /if \(submitting\.current\) return/);
+  assert.doesNotMatch(contact, /generate_lead[^\n]*form\./);
 });
 
 test('legal pages provide refund email and clear issuance deadline', () => {

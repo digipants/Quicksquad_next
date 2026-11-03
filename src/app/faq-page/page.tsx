@@ -4,36 +4,12 @@ import TestimonialsSection from "../pages/Testimonialsection";
 import Image from "next/image";
 
 const faqs = [
-  {
-    question: "What payment methods do you accept?",
-    answer:
-      "We accept all major credit and debit cards, UPI, net banking, and digital wallets. Payments can be made securely through our website.",
-  },
-  {
-    question: "Is my payment information secure?",
-    answer:
-      "Yes, we use industry-standard encryption and secure payment gateways to ensure your payment details are protected. We do not store any card information on our servers.",
-  },
-  {
-    question: "Do you offer refunds if I’m not satisfied with the service?",
-    answer:
-      "Yes, we have a refund policy based on the nature of the service provided. If you are not satisfied, please contact our team for assistance.",
-  },
-  {
-    question: "Can I get an invoice for my payment?",
-    answer:
-      "Absolutely! Once your payment is completed, you will receive an email with your invoice. You can also request a copy through our team.",
-  },
-  {
-    question: "Do you offer any discounts or subscription plans?",
-    answer:
-      "The Basic and Premium prices are monthly reference prices. The current checkout accepts a one-time payment and does not set up automatic monthly renewal. Enterprise pricing is custom; contact us for details.",
-  },
-  {
-    question: "What should I do if my payment fails?",
-    answer:
-      "If your payment fails, please try again with a different method or contact your bank. You can also reach out to our team for assistance.",
-  },
+  { question: "How do I request a consultation?", answer: "Select a category and use the consultation form. Our team will follow up about the scope and next steps." },
+  { question: "Can I make a payment on the website?", answer: "No. Resolve US does not accept or record payments or payment details on this website. Any agreed payment arrangements are handled separately." },
+  { question: "Do you offer monthly plans?", answer: "Basic is $20/month, Premium is $75/month, and Enterprise is quoted individually. These rates do not initiate automatic billing through this website." },
+  { question: "How can I request a refund?", answer: "Email support@resolve-us.com with your purchase information and reason for the request. Eligible refunds are issued within 14 calendar days after approval." },
+  { question: "Can I obtain billing documentation?", answer: "Contact support@resolve-us.com for assistance with documentation relating to any agreed payment outside the website." },
+  { question: "Can I cancel my plan?", answer: "Email support@resolve-us.com to discuss cancellation of any ongoing arrangement. This website does not initiate automatic recurring charges." },
 ];
 
 export default function FAQSection() {

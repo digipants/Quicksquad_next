@@ -83,7 +83,7 @@ test('AI keeps model and prompt while using Resolve US identity', async () => {
   } finally { global.fetch = originalFetch; }
 });
 
-test('baseline prices, entitlements, categories and payment settings remain identical', () => {
+test('baseline plan prices, features and consultation categories remain unchanged', () => {
   const baseline = file => execFileSync('git', ['show', `449fa3794255e2084e616dad3f291d1f019f7592:${file}`], { encoding: 'utf8' });
   const planPattern = /const plans: Plan\[\] = \[[\s\S]*?\n\];/;
   assert.equal(fs.readFileSync('src/lib/pricing.ts', 'utf8').match(/export (const plans: Plan\[\] = \[[\s\S]*?\n\];)/)[1], baseline('src/app/pricing/page.tsx').match(planPattern)[0]);
@@ -92,11 +92,6 @@ test('baseline prices, entitlements, categories and payment settings remain iden
     ['src/app/services/page.tsx', /const services = \[[\s\S]*?\n\];/]
   ]) {
     assert.equal(fs.readFileSync(file, 'utf8').match(expression)[0], baseline(file).match(expression)[0].replaceAll('QuickSquad', 'Resolve US'));
-  }
-  const current = fs.readFileSync('src/components/PricingCards.tsx', 'utf8');
-  const original = baseline('src/app/pricing/page.tsx');
-  for (const expression of [/key: "[^"]+"/, /currency: "[^"]+"/, /amount: plan.price/, /handler\(response\) \{[\s\S]*?\n      \}/]) {
-    assert.equal(current.match(expression)[0].replace("window.alert(", "alert("), original.match(expression)[0]);
   }
 });
 
@@ -107,25 +102,32 @@ test('sitemap and robots use primary domain consistently', () => {
   assert.equal(load('src/app/robots.ts').default().sitemap, 'https://resolve-us.com/sitemap.xml');
 });
 
-test('checkout opens unchanged Basic and Premium amounts; Enterprise stays contact-only', async () => {
-  const { runInNewContext } = await import('node:vm');
-  const source = fs.readFileSync('src/components/PricingCards.tsx', 'utf8');
-  const planSource = fs.readFileSync('src/lib/pricing.ts', 'utf8').match(/export const plans: Plan\[\] = \[[\s\S]*?\n\];/)[0].replace(/^export /, '');
-  const handlerSource = source.match(/const handlePayment = \(plan: Plan\) => \{[\s\S]*?\n  \};/)[0];
-  const opened = [];
-  const notices = [];
-  const compiled = ts.transpileModule(`${planSource}\n${handlerSource}\nplans.forEach(handlePayment);`, {
-    compilerOptions: { target: ts.ScriptTarget.ES2020 }
-  }).outputText;
-  runInNewContext(compiled, {
-    window: { Razorpay: function(options) { this.open = () => opened.push(options); }, alert: message => notices.push(message) }
-  });
-  assert.deepEqual(opened.map(option => option.amount), [2000, 7500]);
-  assert.ok(opened.every(option => option.name === 'Resolve US' && option.currency === 'USD'));
-  assert.equal(notices.length, 0);
-  assert.match(source, /plan\.price === 0/);
+test('enquiry-only pricing has no on-site payment capture', () => {
+  const pricingCards = fs.readFileSync('src/components/PricingCards.tsx', 'utf8');
+  const pricingPage = fs.readFileSync('src/app/pricing/page.tsx', 'utf8');
+  const homepage = fs.readFileSync('src/app/page.tsx', 'utf8');
+  const faq = fs.readFileSync('src/app/faq-page/page.tsx', 'utf8');
+  assert.doesNotMatch(pricingCards, /Razorpay|checkout\.js|handlePayment|razorpay_payment_id|new window\.Razorpay/);
+  assert.match(pricingCards, /href="\/contact#consultation-form"/);
+  assert.doesNotMatch(pricingPage, /<PricingCards interactive/);
+  assert.match(pricingPage, /does not take or record payments through this website/);
+  assert.match(homepage, /No payments or payment details are accepted through this website/);
+  assert.match(faq, /does not accept or record payments/);
 });
 
+test('legal pages provide refund email and clear issuance deadline', () => {
+  const refund = fs.readFileSync('src/app/refund-policy/page.tsx', 'utf8');
+  const terms = fs.readFileSync('src/app/terms-of-service/page.tsx', 'utf8');
+  const privacy = fs.readFileSync('src/app/privacy-policy/page.tsx', 'utf8');
+  const disclaimer = fs.readFileSync('src/app/disclaimer/page.tsx', 'utf8');
+  for (const text of [refund, terms, privacy, disclaimer]) {
+    assert.match(text, /mailto:support@resolve-us\.com/);
+    assert.match(text, /A V TRADE CORPORATION/);
+  }
+  assert.match(refund, /14 calendar days after approval/);
+  assert.match(refund, /does not accept payments/);
+  assert.match(terms, /website does not accept payments/);
+});
 
 test('new phone number and public brand presentation are consistent', () => {
   const files = ['src/components/SiteHeader.tsx', 'src/components/SiteFooter.tsx', 'src/app/contact/page.tsx', 'src/app/page.tsx', 'src/app/api/send-email/route.ts', 'src/app/layout.tsx'];
@@ -137,5 +139,5 @@ test('new phone number and public brand presentation are consistent', () => {
     for (const match of source.matchAll(/tel:([^\"']+)/g)) assert.equal(match[1], '+18443693312');
   }
   const faq = fs.readFileSync('src/app/faq-page/page.tsx', 'utf8');
-  assert.match(faq, /does not set up automatic monthly renewal/);
+  assert.match(faq, /does not accept or record payments/);
 });

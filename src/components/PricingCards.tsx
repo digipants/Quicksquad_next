@@ -1,58 +1,12 @@
-"use client";
-
-import { useEffect } from "react";
 import Link from "next/link";
 import { Check } from "lucide-react";
-import { plans, type Plan } from "@/lib/pricing";
+import { plans } from "@/lib/pricing";
 
-interface RazorpayOptions {
-  key: string;
-  amount: number;
-  currency: string;
-  name: string;
-  description: string;
-  image?: string;
-  handler: (response: { razorpay_payment_id: string }) => void;
-  prefill?: { name: string; email: string; contact: string };
-  theme?: { color: string };
-}
-
-interface RazorpayInstance { open: () => void }
-declare global { interface Window { Razorpay: new (options: RazorpayOptions) => RazorpayInstance } }
-
-export default function PricingCards({ interactive = false }: { interactive?: boolean }) {
-  useEffect(() => {
-    if (!interactive || document.querySelector('script[data-razorpay-checkout]')) return;
-    const script = document.createElement("script");
-    script.src = "https://checkout.razorpay.com/v1/checkout.js";
-    script.async = true;
-    script.dataset.razorpayCheckout = "true";
-    document.body.appendChild(script);
-    return () => { script.remove(); };
-  }, [interactive]);
-
-  const handlePayment = (plan: Plan) => {
-    if (plan.price === 0) return;
-    if (!window.Razorpay) {
-      window.alert("Checkout is loading. Please try again in a moment.");
-      return;
-    }
-    const options: RazorpayOptions = {
-      key: "rzp_test_RH1qkK5aG1oovC",
-      amount: plan.price,
-      currency: "USD",
-      name: "Resolve US",
-      description: `${plan.title} Subscription`,
-      image: "/images/resolve-us-logo.svg",
-      handler(response) {
-        window.alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
-      },
-      prefill: { name: "Customer Name", email: "customer@example.com", contact: "1234567890" },
-      theme: { color: "#0755D9" },
-    };
-    new window.Razorpay(options).open();
-  };
-
+/**
+ * Informational pricing only. Resolve US does not accept or record payments
+ * through the website; all plan enquiries go through the consultation form.
+ */
+export default function PricingCards() {
   return (
     <div id="plans" className="grid scroll-mt-28 gap-6 lg:grid-cols-3">
       {plans.map((plan, index) => (
@@ -69,11 +23,9 @@ export default function PricingCards({ interactive = false }: { interactive?: bo
             {plan.displayPrice.includes("/") && <span className="text-base font-medium text-slate-700">/ {plan.displayPrice.split("/")[1]}</span>}
           </p>
           <div className="mb-5 mt-4 h-px bg-slate-200" />
-          {interactive && plan.price > 0 ? (
-            <button onClick={() => handlePayment(plan)} className={`rounded-xl px-4 py-3 text-center text-sm font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0755D9] focus-visible:ring-offset-2 ${index === 1 ? "bg-[#0755D9] text-white hover:bg-[#0647B7]" : "border border-[#0755D9] text-[#0B2348] hover:bg-blue-50"}`}>Get {plan.title.replace(" Plan", "")} Plan</button>
-          ) : (
-            <Link href={plan.price === 0 ? "/contact#consultation-form" : "/pricing#plans"} className={`rounded-xl px-4 py-3 text-center text-sm font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0755D9] focus-visible:ring-offset-2 ${index === 1 ? "bg-[#0755D9] text-white hover:bg-[#0647B7]" : "border border-[#0755D9] text-[#0B2348] hover:bg-blue-50"}`}>{plan.price === 0 ? "Request a Quote" : `Get ${plan.title.replace(" Plan", "")} Plan`}</Link>
-          )}
+          <Link href="/contact#consultation-form" className={`rounded-xl px-4 py-3 text-center text-sm font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0755D9] focus-visible:ring-offset-2 ${index === 1 ? "bg-[#0755D9] text-white hover:bg-[#0647B7]" : "border border-[#0755D9] text-[#0B2348] hover:bg-blue-50"}`}>
+            {plan.price === 0 ? "Request a Quote" : `Enquire about ${plan.title.replace(" Plan", "")}`}
+          </Link>
           <ul className="mt-5 space-y-3 text-sm leading-6 text-slate-700">
             {plan.features.map((feature) => <li key={feature} className="flex items-start gap-2.5"><Check size={18} className="mt-0.5 shrink-0 text-[#0755D9]" aria-hidden="true" /><span>{feature}</span></li>)}
           </ul>

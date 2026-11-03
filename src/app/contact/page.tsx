@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 interface Category {
   title: string;
@@ -80,6 +80,7 @@ const allCategories: Category[] = [
 ];
 
 export default function ContactPage() {
+  const submitting = useRef(false);
   const [category, setCategory] = useState("");
   const [subCategory, setSubCategory] = useState("");
   const [loading, setLoading] = useState(false);
@@ -98,6 +99,7 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (submitting.current) return;
     setFormStatus(null);
 
     if (!form.name || !form.email || !form.phone || !form.message) {
@@ -116,6 +118,7 @@ export default function ContactPage() {
     //   return;
     // }
 
+    submitting.current = true;
     setLoading(true);
     try {
       const res = await fetch("/api/send-email", {
@@ -126,7 +129,16 @@ export default function ContactPage() {
 
       const data = await res.json();
 
-      if (res.ok) {
+      if (res.ok && data.success === true) {
+        // Count only accepted enquiries and only with analytics consent; never send PII.
+        try {
+          const preferences = JSON.parse(window.localStorage.getItem("resolve-us-optional-cookies-v1") || "null");
+          if (preferences?.analytics === true) {
+            window.gtag?.("event", "generate_lead", { method: "consultation_form" });
+          }
+        } catch {
+          // No analytics when consent preferences cannot be read.
+        }
         setFormStatus({ type: "success", message: data.message || "Your consultation request has been sent." });
         setForm({ name: "", email: "", phone: "", message: "" });
         setCategory("");
@@ -137,6 +149,7 @@ export default function ContactPage() {
     } catch {
       setFormStatus({ type: "error", message: "Network error. Please check your connection and try again." });
     } finally {
+      submitting.current = false;
       setLoading(false);
     }
   };

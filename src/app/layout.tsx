@@ -4,16 +4,13 @@ import "./globals.css";
 import { cookies, headers } from "next/headers";
 import Navbar from "./pages/Navbar";
 import Footer from "./pages/Footer";
-import Script from "next/script";
+import CookieConsent from "@/components/CookieConsent";
 import ChatWidget from "@/components/ChatWidget";
 import HeaderAu from "@/components/Header/HeaderAu";
 import HeaderUs from "@/components/Header/HeaderUs";
 import FooterAu from "@/components/Footer/FooterAu";
 import FooterUs from "@/components/Footer/FooterUs";
 import SiteDisclosure from "@/components/SiteDisclosure";
-
-const GA4_MEASUREMENT_ID = "G-K82JB039DQ";
-const GOOGLE_ADS_ID = "AW-18376694937";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -140,25 +137,28 @@ const country = countryHeader || cookieStore.get("country")?.value;
   return (
     <html lang="en">
       <head>
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`}
-          strategy="afterInteractive"
+        <script
+          id="resolve-us-consent-defaults"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
+              window.gtag('consent', 'default', {
+                'analytics_storage': 'denied',
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied'
+              });
+            `,
+          }}
         />
-        <Script id="google-tag-config" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA4_MEASUREMENT_ID}');
-            gtag('config', '${GOOGLE_ADS_ID}');
-          `}
-        </Script>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <HeaderComponent />
         {children}
         <SiteDisclosure />
+        <CookieConsent />
         <ChatWidget />
         <FooterComponent />
       </body>

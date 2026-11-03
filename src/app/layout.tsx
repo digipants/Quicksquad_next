@@ -12,6 +12,9 @@ import FooterAu from "@/components/Footer/FooterAu";
 import FooterUs from "@/components/Footer/FooterUs";
 import SiteDisclosure from "@/components/SiteDisclosure";
 
+const GA4_MEASUREMENT_ID = "G-K82JB039DQ";
+const GOOGLE_ADS_ID = "AW-18376694937";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -150,16 +153,16 @@ const country = countryHeader || cookieStore.get("country")?.value;
     <html lang="en">
       <head>
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-5HV0XZ5FSJ"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`}
           strategy="afterInteractive"
         />
-        <Script id="google-ads-gtag" strategy="afterInteractive">
+        <Script id="google-tag-config" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-5HV0XZ5FSJ');
-            gtag('config', 'AW-18376694937');
+            gtag('config', '${GA4_MEASUREMENT_ID}');
+            gtag('config', '${GOOGLE_ADS_ID}');
           `}
         </Script>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />

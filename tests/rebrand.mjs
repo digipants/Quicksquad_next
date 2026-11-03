@@ -85,11 +85,11 @@ test('AI keeps model and prompt while using Resolve US identity', async () => {
 
 test('baseline plan prices, features and consultation categories remain unchanged', () => {
   const baseline = file => execFileSync('git', ['show', `449fa3794255e2084e616dad3f291d1f019f7592:${file}`], { encoding: 'utf8' });
-  const planPattern = /const plans: Plan\\[\\] = \\[[\\s\\S]*?\\n\\];/;
-  assert.equal(fs.readFileSync('src/lib/pricing.ts', 'utf8').match(/export (const plans: Plan\\[\\] = \\[[\\s\\S]*?\\n\\];)/)[1], baseline('src/app/pricing/page.tsx').match(planPattern)[0]);
+  const planPattern = /const plans: Plan\[\] = \[[\s\S]*?\n\];/;
+  assert.equal(fs.readFileSync('src/lib/pricing.ts', 'utf8').match(/export (const plans: Plan\[\] = \[[\s\S]*?\n\];)/)[1], baseline('src/app/pricing/page.tsx').match(planPattern)[0]);
   for (const [file, expression] of [
-    ['src/app/contact/page.tsx', /const allCategories: Category\\[\\] = \\[[\\s\\S]*?\\n\\];/],
-    ['src/app/services/page.tsx', /const services = \\[[\\s\\S]*?\\n\\];/]
+    ['src/app/contact/page.tsx', /const allCategories: Category\[\] = \[[\s\S]*?\n\];/],
+    ['src/app/services/page.tsx', /const services = \[[\s\S]*?\n\];/]
   ]) {
     assert.equal(fs.readFileSync(file, 'utf8').match(expression)[0], baseline(file).match(expression)[0].replaceAll('QuickSquad', 'Resolve US'));
   }
@@ -107,8 +107,8 @@ test('enquiry-only pricing has no on-site payment capture', () => {
   const pricingPage = fs.readFileSync('src/app/pricing/page.tsx', 'utf8');
   const homepage = fs.readFileSync('src/app/page.tsx', 'utf8');
   const faq = fs.readFileSync('src/app/faq-page/page.tsx', 'utf8');
-  assert.doesNotMatch(pricingCards, /Razorpay|checkout\\.js|handlePayment|razorpay_payment_id|new window\\.Razorpay/);
-  assert.match(pricingCards, /href="\\/contact#consultation-form"/);
+  assert.doesNotMatch(pricingCards, /Razorpay|checkout\.js|handlePayment|razorpay_payment_id|new window\.Razorpay/);
+  assert.match(pricingCards, /href="\/contact#consultation-form"/);
   assert.doesNotMatch(pricingPage, /<PricingCards interactive/);
   assert.match(pricingPage, /does not take or record payments through this website/);
   assert.match(homepage, /No payments or payment details are accepted through this website/);
@@ -121,7 +121,7 @@ test('legal pages provide refund email and clear issuance deadline', () => {
   const privacy = fs.readFileSync('src/app/privacy-policy/page.tsx', 'utf8');
   const disclaimer = fs.readFileSync('src/app/disclaimer/page.tsx', 'utf8');
   for (const text of [refund, terms, privacy, disclaimer]) {
-    assert.match(text, /mailto:support@resolve-us\\.com/);
+    assert.match(text, /mailto:support@resolve-us\.com/);
     assert.match(text, /A V TRADE CORPORATION/);
   }
   assert.match(refund, /14 calendar days after approval/);

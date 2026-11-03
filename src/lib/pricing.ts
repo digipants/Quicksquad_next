@@ -5,7 +5,8 @@ export interface Plan {
   features: string[];
 }
 
-// Keep checkout amounts, prices, and entitlements together as the source of truth.
+// Preserve approved plan rates and entitlements; numeric rates are informational only.
+// Checkout is disabled and no payments are processed or recorded by this website.
 export const plans: Plan[] = [
   {
     title: "Basic Plan",

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Script from "next/script";
 
 type Preferences = { analytics: boolean; advertising: boolean };
@@ -21,6 +21,8 @@ export default function CookieConsent() {
   const [initialized, setInitialized] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [enableGoogleTag, setEnableGoogleTag] = useState(false);
+  const initializedGoogle = useRef(false);
+  const configuredMeasurement = useRef({ analytics: false, advertising: false });
 
   useEffect(() => {
     try {
@@ -56,9 +58,18 @@ export default function CookieConsent() {
     });
 
     if (choice.analytics || choice.advertising) {
-      window.gtag("js", new Date());
-      if (choice.analytics) window.gtag("config", GA4_ID);
-      if (choice.advertising) window.gtag("config", ADS_ID);
+      if (!initializedGoogle.current) {
+        window.gtag("js", new Date());
+        initializedGoogle.current = true;
+      }
+      if (choice.analytics && !configuredMeasurement.current.analytics) {
+        window.gtag("config", GA4_ID);
+        configuredMeasurement.current.analytics = true;
+      }
+      if (choice.advertising && !configuredMeasurement.current.advertising) {
+        window.gtag("config", ADS_ID);
+        configuredMeasurement.current.advertising = true;
+      }
       setEnableGoogleTag(true);
     } else {
       // Also revokes future tracking on the current page after an opt-out.

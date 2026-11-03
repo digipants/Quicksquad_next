@@ -101,19 +101,7 @@ const structuredData = {
       name: "Resolve US Everyday Consultation Services",
       provider: { "@id": "https://resolve-us.com/#organization" },
       serviceType: "AI-powered consumer guidance and consultation",
-      areaServed: "Worldwide",
       description: "General guidance for technology, finance, travel, digital accounts, shopping, career, healthcare information, government-service tasks, and everyday online help.",
-    },
-    {
-      "@type": "FAQPage",
-      mainEntity: [
-        { "@type": "Question", name: "What does Resolve US provide?", acceptedAnswer: { "@type": "Answer", text: "Resolve US provides general consumer guidance and consultation for everyday questions and online tasks." } },
-        { "@type": "Question", name: "Is Resolve US a bank, law firm, medical provider, investment adviser, or government agency?", acceptedAnswer: { "@type": "Answer", text: "No. Resolve US does not provide regulated professional services. Information is general and educational; consult qualified professionals when required." } },
-      ],
-    },
-    {
-      "@type": "BreadcrumbList",
-      itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://resolve-us.com" }],
     },
   ],
 };

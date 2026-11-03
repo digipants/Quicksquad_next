@@ -33,7 +33,7 @@ export default function SiteHeader() {
           <Image src="/images/resolve-us-logo.svg" alt="Resolve US" width={280} height={56} priority className="h-auto w-[194px] sm:w-[230px]" />
         </Link>
 
-        <nav className="hidden items-center gap-5 2xl:flex" aria-label="Primary navigation">
+        <nav className="hidden items-center gap-5 min-[1366px]:flex" aria-label="Primary navigation">
           <Link href="/" aria-current={pathname === "/" ? "page" : undefined} className={`border-b-2 py-2 text-[15px] font-semibold transition-colors hover:text-[#0755D9] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0755D9] ${pathname === "/" ? "border-[#0755D9] text-[#0755D9]" : "border-transparent text-[#101B33]"}`}>Home</Link>
           <details className="group relative">
             <summary className="flex cursor-pointer list-none items-center gap-1 rounded-md py-2 text-[15px] font-semibold text-[#101B33] transition-colors hover:text-[#0755D9] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0755D9]">
@@ -60,13 +60,13 @@ export default function SiteHeader() {
           <Link href="/contact#consultation-form" className="rounded-full bg-[#0755D9] px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-[#0647B7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0755D9] focus-visible:ring-offset-2">Get Consultation</Link>
         </div>
 
-        <button type="button" aria-label={open ? "Close navigation menu" : "Open navigation menu"} aria-expanded={open} aria-controls="mobile-navigation" className="rounded-lg p-2 text-[#0B2348] transition hover:bg-blue-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0755D9] 2xl:hidden" onClick={() => setOpen((current) => !current)}>
+        <button type="button" aria-label={open ? "Close navigation menu" : "Open navigation menu"} aria-expanded={open} aria-controls="mobile-navigation" className="rounded-lg p-2 text-[#0B2348] transition hover:bg-blue-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0755D9] min-[1366px]:hidden" onClick={() => setOpen((current) => !current)}>
           {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
         </button>
       </div>
 
       {open && (
-        <nav id="mobile-navigation" className="border-t border-slate-200 bg-white px-4 py-3 shadow-lg 2xl:hidden" aria-label="Mobile navigation">
+        <nav id="mobile-navigation" className="border-t border-slate-200 bg-white px-4 py-3 shadow-lg min-[1366px]:hidden" aria-label="Mobile navigation">
           <div className="mx-auto flex max-w-7xl flex-col">
             <Link href="/services#categories" className="rounded-lg px-3 py-3 font-semibold text-[#0B2348] hover:bg-blue-50">Consultation Categories</Link>
             {navigation.map((item) => <Link key={item.href} href={item.href} className="rounded-lg px-3 py-3 font-medium text-slate-700 hover:bg-blue-50 hover:text-[#0755D9]">{item.label}</Link>)}

@@ -43,14 +43,14 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-16">
+      <section id="categories" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-16">
         <div className="mb-10 max-w-3xl">
           <h2 className="text-3xl font-bold text-slate-900">Choose a consultation category</h2>
           <p className="mt-3 leading-7 text-slate-600">Our AI-powered platform helps turn everyday questions into clear, useful next steps. Where an issue needs regulated professional advice, we will direct you to an appropriately qualified professional.</p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map(({ title, icon: Icon, description, examples }) => (
-            <article key={title} className="group flex min-h-72 flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg">
+            <article key={title} id={title.toLowerCase().replaceAll(" ", "-")} className="group flex min-h-72 flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg">
               <div className="grid h-12 w-12 place-items-center rounded-xl bg-blue-50 text-blue-700"><Icon size={25} aria-hidden="true" /></div>
               <h3 className="mt-5 text-xl font-bold text-slate-900">{title}</h3>
               <p className="mt-3 text-sm leading-6 text-slate-600">{description}</p>

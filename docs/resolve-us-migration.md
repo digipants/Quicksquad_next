@@ -80,3 +80,12 @@ Owner dashboard checks:
 - [ ] Revert this PR through a new branch/PR if code rollback is required; do not reset main or alter customer/payment data.
 - [ ] Restore previous environment configuration only if changed during cutover; keep verified sender credentials and monitored notification inbox.
 - [ ] Recheck forms, emails, AI, pricing and analytics. Previous code contains old-brand URLs, so treat rollback as temporary and repair metadata before declaring launch healthy.
+
+## Approved visual design implementation
+
+- Replaced the first pass's text logo with an original scalable SVG wordmark and matching R/check favicon. The original image generator created a new, logo-free consultation hero photo; the optimized WebP is stored in `public/images/resolve-consultation-hero.webp`.
+- Rebuilt the shared responsive header with Home, an accessible category menu, Pricing, How It Works, About, Contact, phone CTA and consultation CTA. The mobile menu exposes matching navigation and phone/consultation actions.
+- Rebuilt the homepage around the approved headline and exact supporting copy, category tags, CTA pair, category cards from the existing home service definitions, a short three-step explanation and prominent cards sourced from the existing plan definitions.
+- Refreshed `/pricing` with the same shared plan data and preserved Razorpay test key, amount, USD currency, handler and prefill. Basic remains $20/month, Premium $75/month, Enterprise Custom Pricing. The UI now discloses that current checkout is one-time and does not establish automatic monthly renewal; related FAQ claims about recurring subscriptions and automatic invoices were corrected.
+- Updated public phone display and `tel:` destinations to (844) 369-3312. Contact form labels now programmatically identify their fields. The consumer footer has Resolve US brand copy and a discreet legal-operator line; corporate identity remains in legal disclosures and Organization structured data as required for transparency.
+- Visual inspection of the Netlify rendered preview and desktop/mobile screenshot capture are still pending because the connected browser control tool is not available in this session. The preview can still be reviewed at the PR's deploy-preview URL. Responsive classes, semantic navigation/form labels, keyboard focus styles, local routes and build output were checked in source/build validation; these do not replace visual browser verification.

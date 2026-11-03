@@ -33,7 +33,7 @@ export async function POST(req: Request) {
 
     if (!emailUser || !emailPass || !from) {
       console.error("Contact email is not configured.");
-      return NextResponse.json({ success: false, error: "Contact email is temporarily unavailable. Please call (844) 312-1044." }, { status: 503 });
+      return NextResponse.json({ success: false, error: "Contact email is temporarily unavailable. Please call (844) 369-3312." }, { status: 503 });
     }
 
     const transporter = nodemailer.createTransport({
@@ -63,12 +63,12 @@ export async function POST(req: Request) {
     });
     } catch {
       console.error("Contact confirmation email failed.");
-      return NextResponse.json({ success: true, confirmationSent: false, message: "Your consultation request was received, but we could not send your confirmation email. Please do not resubmit. Call (844) 312-1044 with any questions." });
+      return NextResponse.json({ success: true, confirmationSent: false, message: "Your consultation request was received, but we could not send your confirmation email. Please do not resubmit. Call (844) 369-3312 with any questions." });
     }
 
     return NextResponse.json({ success: true, message: "Your consultation request has been sent." });
   } catch {
     console.error("Contact form submission failed.");
-    return NextResponse.json({ success: false, error: "We could not send your request. Please try again or call (844) 312-1044." }, { status: 500 });
+    return NextResponse.json({ success: false, error: "We could not send your request. Please try again or call (844) 369-3312." }, { status: 500 });
   }
 }

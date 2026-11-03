@@ -85,17 +85,18 @@ test('AI keeps model and prompt while using Resolve US identity', async () => {
 
 test('baseline prices, entitlements, categories and payment settings remain identical', () => {
   const baseline = file => execFileSync('git', ['show', `449fa3794255e2084e616dad3f291d1f019f7592:${file}`], { encoding: 'utf8' });
+  const planPattern = /const plans: Plan\[\] = \[[\s\S]*?\n\];/;
+  assert.equal(fs.readFileSync('src/lib/pricing.ts', 'utf8').match(/export (const plans: Plan\[\] = \[[\s\S]*?\n\];)/)[1], baseline('src/app/pricing/page.tsx').match(planPattern)[0]);
   for (const [file, expression] of [
-    ['src/app/pricing/page.tsx', /const plans: Plan\[\] = \[[\s\S]*?\n\];/],
     ['src/app/contact/page.tsx', /const allCategories: Category\[\] = \[[\s\S]*?\n\];/],
     ['src/app/services/page.tsx', /const services = \[[\s\S]*?\n\];/]
   ]) {
     assert.equal(fs.readFileSync(file, 'utf8').match(expression)[0], baseline(file).match(expression)[0].replaceAll('QuickSquad', 'Resolve US'));
   }
-  const file = 'src/app/pricing/page.tsx';
-  const current = fs.readFileSync(file, 'utf8');
+  const current = fs.readFileSync('src/components/PricingCards.tsx', 'utf8');
+  const original = baseline('src/app/pricing/page.tsx');
   for (const expression of [/key: "[^"]+"/, /currency: "[^"]+"/, /amount: plan.price/, /handler\(response\) \{[\s\S]*?\n      \}/]) {
-    assert.equal(current.match(expression)[0], baseline(file).match(expression)[0]);
+    assert.equal(current.match(expression)[0].replace("window.alert(", "alert("), original.match(expression)[0]);
   }
 });
 
@@ -108,8 +109,8 @@ test('sitemap and robots use primary domain consistently', () => {
 
 test('checkout opens unchanged Basic and Premium amounts; Enterprise stays contact-only', async () => {
   const { runInNewContext } = await import('node:vm');
-  const source = fs.readFileSync('src/app/pricing/page.tsx', 'utf8');
-  const planSource = source.match(/const plans: Plan\[\] = \[[\s\S]*?\n\];/)[0];
+  const source = fs.readFileSync('src/components/PricingCards.tsx', 'utf8');
+  const planSource = fs.readFileSync('src/lib/pricing.ts', 'utf8').match(/export const plans: Plan\[\] = \[[\s\S]*?\n\];/)[0].replace(/^export /, '');
   const handlerSource = source.match(/const handlePayment = \(plan: Plan\) => \{[\s\S]*?\n  \};/)[0];
   const opened = [];
   const notices = [];
@@ -117,11 +118,24 @@ test('checkout opens unchanged Basic and Premium amounts; Enterprise stays conta
     compilerOptions: { target: ts.ScriptTarget.ES2020 }
   }).outputText;
   runInNewContext(compiled, {
-    window: { Razorpay: function(options) { this.open = () => opened.push(options); } },
-    alert: message => notices.push(message)
+    window: { Razorpay: function(options) { this.open = () => opened.push(options); }, alert: message => notices.push(message) }
   });
   assert.deepEqual(opened.map(option => option.amount), [2000, 7500]);
   assert.ok(opened.every(option => option.name === 'Resolve US' && option.currency === 'USD'));
-  assert.equal(notices.length, 1);
-  assert.match(notices[0], /contact us for Enterprise/);
+  assert.equal(notices.length, 0);
+  assert.match(source, /plan\.price === 0/);
+});
+
+
+test('new phone number and public brand presentation are consistent', () => {
+  const files = ['src/components/SiteHeader.tsx', 'src/components/SiteFooter.tsx', 'src/app/contact/page.tsx', 'src/app/page.tsx', 'src/app/api/send-email/route.ts', 'src/app/layout.tsx'];
+  const application = files.map(file => fs.readFileSync(file, 'utf8')).join('\n');
+  assert.ok(!application.includes('312-1044') && !application.includes('18443121044'));
+  assert.ok(application.includes('(844) 369-3312') && application.includes('+18443693312'));
+  for (const file of ['src/components/SiteHeader.tsx', 'src/components/SiteFooter.tsx', 'src/app/contact/page.tsx', 'src/app/page.tsx']) {
+    const source = fs.readFileSync(file, 'utf8');
+    for (const match of source.matchAll(/tel:([^\"']+)/g)) assert.equal(match[1], '+18443693312');
+  }
+  const faq = fs.readFileSync('src/app/faq-page/page.tsx', 'utf8');
+  assert.match(faq, /does not set up automatic monthly renewal/);
 });

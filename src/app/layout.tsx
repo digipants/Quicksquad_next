@@ -87,6 +87,7 @@ const structuredData = {
       description: "AI-powered consumer consultation platform for everyday online tasks and questions.",
       url: "https://resolve-us.com",
       legalName: "A V TRADE CORPORATION",
+      telephone: "+1-844-369-3312",
     },
     {
       "@type": "WebSite",

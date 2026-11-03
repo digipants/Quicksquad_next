@@ -1,9 +1,10 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://www.quicksquad.live";
+  const baseUrl = "https://resolve-us.com";
 
   return [
+    ...["services", "terms-of-service", "privacy-policy", "refund-policy", "disclaimer", "faq-page", "speedtest"].map((path) => ({ url: `${baseUrl}/${path}` })),
     {
       url: `${baseUrl}/`,
       lastModified: new Date(),

@@ -1,3 +1,13 @@
+# Resolve US
+
+Everyday Questions. Clear Solutions.
+
+Consumer-facing consultation brand operated by **A V TRADE CORPORATION**. Primary website: https://resolve-us.com.
+
+See [migration audit, validation and launch/rollback checklist](docs/resolve-us-migration.md) for Issue #1 and required external dashboard checks.
+
+Run migration regression tests with `node --test tests/rebrand.mjs`.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

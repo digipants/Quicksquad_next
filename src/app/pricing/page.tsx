@@ -158,9 +158,9 @@ export default function PricingPage() {
       key: "rzp_test_RH1qkK5aG1oovC", // replace with live key in prod
       amount: plan.price,
       currency: "USD",
-      name: "QuickSquad",
+      name: "Resolve US",
       description: `${plan.title} Subscription`,
-      image: "/images/logo.png",
+      image: "/images/resolve-us-logo.png",
       handler(response) {
         alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
       },

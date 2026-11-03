@@ -64,7 +64,7 @@ export default function Home() {
       transition={{ duration: 1 }}
     >
       <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold mb-6 leading-tight tracking-tight font-[Poppins]">
-        Your Everyday AI-Powered Consultation Partner
+        Everyday Questions. Clear Solutions.
       </h1>
 
       <p className="text-lg sm:text-xl md:text-2xl mb-6 text-gray-100 max-w-2xl font-[Inter]">
@@ -104,7 +104,7 @@ export default function Home() {
       <div className="relative aspect-4/3 w-full max-w-xl overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/20 sm:aspect-16/11">
         <Image
           src="/images/hero.png"
-          alt="QuickSquad consultation services"
+          alt="Resolve US consultation services"
           fill
           sizes="(min-width: 768px) 50vw, 100vw"
           className="object-cover object-center"
@@ -213,7 +213,7 @@ export default function Home() {
               SMART THINKING MEETS PRACTICAL GUIDANCE FOR BETTER DECISIONS.
             </h2>
             <p className="mb-6">
-              At QuickSquad, we combine clear communication, research, and
+              At Resolve US, we combine clear communication, research, and
               specialist insight to deliver useful consultation across everyday needs.
             </p>
             <Link
@@ -251,7 +251,7 @@ export default function Home() {
           >
             <Image
               src="/images/hero-3.jpeg"
-              alt="QuickSquad consultation team"
+              alt="Resolve US consultation team"
               width={1000}
               height={605}
               className="h-auto w-full rounded-lg"

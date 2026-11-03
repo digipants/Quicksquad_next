@@ -16,10 +16,10 @@ export default function SiteFooter() {
     <footer className="bg-linear-to-br from-blue-950 via-blue-800 to-cyan-800 text-blue-50">
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <Link href="/" aria-label="QuickSquad home"><Image src="/images/logo.png" alt="QuickSquad" width={505} height={136} loading="eager" className="mb-5 h-auto w-40" /></Link>
+          <Link href="/" aria-label="Resolve US home"><Image src="/images/resolve-us-logo.png" alt="Resolve US" width={505} height={136} loading="eager" className="mb-5 h-auto w-40" /></Link>
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-cyan-200">AI-powered Consultation Platform</p>
           <p className="mt-4 max-w-sm text-sm leading-6 text-blue-100">
-            QuickSquad is a consumer-facing brand owned and operated by <strong className="text-white">A V TRADE CORPORATION</strong>, a registered partnership firm. All services, support, billing, subscriptions, marketing, and operations are managed by A V TRADE CORPORATION.
+            Resolve US is a consumer-facing brand owned and operated by <strong className="text-white">A V TRADE CORPORATION</strong>, a registered partnership firm. All services, support, billing, subscriptions, marketing, and operations are managed by A V TRADE CORPORATION.
           </p>
         </div>
         <div>
@@ -34,11 +34,11 @@ export default function SiteFooter() {
             {supportLinks.map((link) => <li key={link.href}><Link className="text-blue-100 transition hover:text-white hover:underline" href={link.href}>{link.label}</Link></li>)}
           </ul>
           <a className="mt-5 flex items-center gap-2 text-lg font-bold text-white hover:text-blue-200" href="tel:+18443121044"><PhoneCall size={18} aria-hidden="true" /> (844) 312-1044</a>
-          <a className="mt-5 inline-block text-sm font-medium text-blue-300 hover:text-blue-200" href="mailto:support@quicksquad.live">support@quicksquad.live</a>
+          <a className="mt-5 inline-block text-sm font-medium text-blue-300 hover:text-blue-200" href="/contact#consultation-form">Contact our team</a>
         </div>
       </div>
       <div className="border-t border-white/20 px-6 py-5 text-center text-xs text-blue-100">
-        © 2026 QuickSquad. All Rights Reserved.
+        © 2026 Resolve US. All Rights Reserved.
       </div>
     </footer>
   );

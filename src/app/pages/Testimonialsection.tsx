@@ -43,6 +43,7 @@ export default function TestimonialsSection() {
           What Our Customers Say
         </h2>
 
+        <p className="mb-6 text-sm text-gray-500">Customer feedback originally collected under our former QuickSquad brand.</p>
         {/* Slider wrapper */}
         <div className="relative max-w-3xl mx-auto overflow-hidden">
           <div

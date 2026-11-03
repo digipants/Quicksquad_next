@@ -19,10 +19,10 @@ export default function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 bg-blue-500 text-white shadow-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="shrink-0" aria-label="QuickSquad home">
+        <Link href="/" className="shrink-0" aria-label="Resolve US home">
           <Image
-            src="/images/logo.png"
-            alt="QuickSquad"
+            src="/images/resolve-us-logo.png"
+            alt="Resolve US"
             width={505}
             height={136}
             loading="eager"
@@ -92,7 +92,7 @@ export default function SiteHeader() {
       <a
         href="tel:+18443121044"
         className="fixed inset-x-4 bottom-4 z-50 inline-flex items-center justify-center gap-2 rounded-xl bg-blue-700 px-5 py-4 text-base font-bold text-white shadow-xl transition hover:bg-blue-800 md:hidden"
-        aria-label="Call QuickSquad at 844 312 1044"
+        aria-label="Call Resolve US at 844 312 1044"
       >
         <PhoneCall size={20} aria-hidden="true" /> Call Now: (844) 312-1044
       </a>

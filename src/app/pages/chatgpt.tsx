@@ -41,7 +41,7 @@ export default function ChatWidget() {
           quickPrompts: [
             "Open a bank account online",
             "Compare two travel insurance options",
-            "Reset my email password",
+            "Learn how to secure my email account",
             "Find the nearest DMV",
             "Explain Roth IRA vs 401(k)",
           ],

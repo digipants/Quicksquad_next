@@ -115,6 +115,21 @@ test('enquiry-only pricing has no on-site payment capture', () => {
   assert.match(faq, /does not accept or record payments/);
 });
 
+test('public guidance avoids third-party technical support claims and password-reset promotion', () => {
+  for (const file of ['src/app/disclaimer/page.tsx', 'src/app/terms-of-service/page.tsx']) {
+    const source = fs.readFileSync(file, 'utf8');
+    assert.doesNotMatch(source, /third[- ]party/i);
+  }
+  const disclaimer = fs.readFileSync('src/app/disclaimer/page.tsx', 'utf8');
+  assert.match(disclaimer, /not the official customer-service department/);
+  assert.match(disclaimer, /does not imply endorsement or affiliation/);
+  for (const file of ['src/components/ChatWidget.tsx', 'src/app/pages/chatgpt.tsx']) {
+    const source = fs.readFileSync(file, 'utf8');
+    assert.doesNotMatch(source, /Reset my email password/i);
+    assert.match(source, /Learn how to secure my email account/);
+  }
+});
+
 test('legal pages provide refund email and clear issuance deadline', () => {
   const refund = fs.readFileSync('src/app/refund-policy/page.tsx', 'utf8');
   const terms = fs.readFileSync('src/app/terms-of-service/page.tsx', 'utf8');

@@ -18,10 +18,8 @@ interface SimpleCookies {
   get(name: string): SimpleCookie | undefined;
 }
 
-/* Handler context: params may be sync or Promise (toolchain-dependent) */
-type HandlerContext =
-  | { params?: { id?: string } }
-  | { params?: Promise<{ id?: string }> };
+/* Next.js route handlers receive asynchronous params. */
+type HandlerContext = { params: Promise<{ id: string }> };
 
 /* Generic Awaitable */
 type Awaitable<T> = T | Promise<T>;
@@ -125,8 +123,8 @@ function getIdFromRequest(req: Request, params?: { id?: string } | null): string
 }
 
 /* -------------------- Handlers -------------------- */
-/* Use context?: HandlerContext (no default {} so no implicit any) */
-export async function GET(req: NextRequest, context?: HandlerContext) {
+/* Keep the route context aligned with the installed Next.js version. */
+export async function GET(req: NextRequest, context: HandlerContext) {
   try {
     if (!canUseMongoBlogs()) {
       return NextResponse.json(
@@ -136,7 +134,7 @@ export async function GET(req: NextRequest, context?: HandlerContext) {
     }
 
     const paramsResolved =
-      context?.params && isPromise(context.params) ? await context.params : (context as { params?: { id?: string } })?.params;
+      await context.params;
     const id = getIdFromRequest(req, paramsResolved);
     if (!id) {
       console.warn("GET /api/admin/blogs/[id] called without params.id and fallback failed. req.url:", req.url);
@@ -154,7 +152,7 @@ export async function GET(req: NextRequest, context?: HandlerContext) {
   }
 }
 
-export async function PUT(req: NextRequest, context?: HandlerContext) {
+export async function PUT(req: NextRequest, context: HandlerContext) {
   try {
     if (!(await isAuthorized(req))) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     if (!canUseMongoBlogs()) {
@@ -165,7 +163,7 @@ export async function PUT(req: NextRequest, context?: HandlerContext) {
     }
 
     const paramsResolved =
-      context?.params && isPromise(context.params) ? await context.params : (context as { params?: { id?: string } })?.params;
+      await context.params;
     const id = getIdFromRequest(req, paramsResolved);
     if (!id) {
       console.warn("PUT /api/admin/blogs/[id] called without params.id and fallback failed. req.url:", req.url);
@@ -215,7 +213,7 @@ export async function PUT(req: NextRequest, context?: HandlerContext) {
   }
 }
 
-export async function DELETE(req: NextRequest, context?: HandlerContext) {
+export async function DELETE(req: NextRequest, context: HandlerContext) {
   try {
     if (!(await isAuthorized(req))) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     if (!canUseMongoBlogs()) {
@@ -226,7 +224,7 @@ export async function DELETE(req: NextRequest, context?: HandlerContext) {
     }
 
     const paramsResolved =
-      context?.params && isPromise(context.params) ? await context.params : (context as { params?: { id?: string } })?.params;
+      await context.params;
     const id = getIdFromRequest(req, paramsResolved);
     if (!id) {
       console.warn("DELETE /api/admin/blogs/[id] called without params.id and fallback failed. req.url:", req.url);

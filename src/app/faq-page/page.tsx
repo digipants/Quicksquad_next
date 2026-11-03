@@ -27,7 +27,7 @@ const faqs = [
   {
     question: "Do you offer any discounts or subscription plans?",
     answer:
-      "Yes, we offer special discounts for long-term consultation plans and business subscriptions. Check our website for the latest offers.",
+      "The Basic and Premium prices are monthly reference prices. The current checkout accepts a one-time payment and does not set up automatic monthly renewal. Enterprise pricing is custom; contact us for details.",
   },
   {
     question: "What should I do if my payment fails?",

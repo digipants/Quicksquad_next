@@ -28,12 +28,12 @@ export async function POST(req: Request) {
 
     const emailUser = process.env.EMAIL_USER;
     const emailPass = process.env.EMAIL_PASS;
-    const inbox = process.env.CONTACT_INBOX || "support@quicksquad.live";
+    const inbox = process.env.CONTACT_INBOX || emailUser;
     const from = process.env.EMAIL_FROM || emailUser;
 
     if (!emailUser || !emailPass || !from) {
       console.error("Contact email is not configured.");
-      return NextResponse.json({ success: false, error: "Contact email is temporarily unavailable. Please email support@quicksquad.live directly." }, { status: 503 });
+      return NextResponse.json({ success: false, error: "Contact email is temporarily unavailable. Please call (844) 369-3312." }, { status: 503 });
     }
 
     const transporter = nodemailer.createTransport({
@@ -42,28 +42,33 @@ export async function POST(req: Request) {
     });
 
     const safe = { name: escapeHtml(name), email: escapeHtml(email), phone: escapeHtml(phone), message: escapeHtml(message).replace(/\n/g, "<br />"), category: escapeHtml(category), subCategory: escapeHtml(subCategory) };
-    const brandFrom = `"QuickSquad" <${from}>`;
+    const brandFrom = `"Resolve US" <${from}>`;
 
     await transporter.sendMail({
       from: brandFrom,
       to: inbox,
       replyTo: email,
-      subject: `New QuickSquad consultation request from ${name}`,
+      subject: `New Resolve US consultation request from ${name}`,
       text: `New consultation request\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nCategory: ${category}\nSub-category: ${subCategory}\n\nMessage:\n${message}`,
-      html: `<div style="font-family:Arial,sans-serif;color:#1e293b;line-height:1.55"><h2 style="color:#1d4ed8">New QuickSquad consultation request</h2><p>Submitted through quicksquad.live.</p><table cellpadding="6"><tr><td><strong>Name</strong></td><td>${safe.name}</td></tr><tr><td><strong>Email</strong></td><td>${safe.email}</td></tr><tr><td><strong>Phone</strong></td><td>${safe.phone}</td></tr><tr><td><strong>Category</strong></td><td>${safe.category}</td></tr><tr><td><strong>Sub-category</strong></td><td>${safe.subCategory}</td></tr></table><h3>Message</h3><p>${safe.message}</p></div>`,
+      html: `<div style="font-family:Arial,sans-serif;color:#1e293b;line-height:1.55"><h2 style="color:#1d4ed8">New Resolve US consultation request</h2><p>Submitted through resolve-us.com.</p><table cellpadding="6"><tr><td><strong>Name</strong></td><td>${safe.name}</td></tr><tr><td><strong>Email</strong></td><td>${safe.email}</td></tr><tr><td><strong>Phone</strong></td><td>${safe.phone}</td></tr><tr><td><strong>Category</strong></td><td>${safe.category}</td></tr><tr><td><strong>Sub-category</strong></td><td>${safe.subCategory}</td></tr></table><h3>Message</h3><p>${safe.message}</p></div>`,
     });
 
-    await transporter.sendMail({
+    try {
+      await transporter.sendMail({
       from: brandFrom,
       to: email,
-      subject: "We received your QuickSquad consultation request",
-      text: `Hello ${name},\n\nWe received your consultation request. QuickSquad provides general consumer guidance and consultation. Our support team will review your message.\n\nCategory: ${category}\n\nThank you,\nQuickSquad`,
-      html: `<div style="font-family:Arial,sans-serif;color:#1e293b;line-height:1.55"><h2 style="color:#1d4ed8">We received your request</h2><p>Hello ${safe.name},</p><p>Thank you for contacting QuickSquad. We provide general consumer guidance and consultation.</p><p><strong>Category:</strong> ${safe.category}</p><p>Our customer-support team will review your message.</p><p>Thank you,<br /><strong>QuickSquad</strong></p></div>`,
-    }).catch((error) => console.error("Confirmation email failed:", error));
+      subject: "We received your Resolve US consultation request",
+      text: `Hello ${name},\n\nWe received your consultation request. Resolve US provides general consumer guidance and consultation. Our support team will review your message.\n\nCategory: ${category}\n\nThank you,\nResolve US`,
+      html: `<div style="font-family:Arial,sans-serif;color:#1e293b;line-height:1.55"><h2 style="color:#1d4ed8">We received your request</h2><p>Hello ${safe.name},</p><p>Thank you for contacting Resolve US. We provide general consumer guidance and consultation.</p><p><strong>Category:</strong> ${safe.category}</p><p>Our customer-support team will review your message.</p><p>Thank you,<br /><strong>Resolve US</strong></p></div>`,
+    });
+    } catch {
+      console.error("Contact confirmation email failed.");
+      return NextResponse.json({ success: true, confirmationSent: false, message: "Your consultation request was received, but we could not send your confirmation email. Please do not resubmit. Call (844) 369-3312 with any questions." });
+    }
 
     return NextResponse.json({ success: true, message: "Your consultation request has been sent." });
-  } catch (error) {
-    console.error("Contact form submission failed:", error);
-    return NextResponse.json({ success: false, error: "We could not send your request. Please try again or email support@quicksquad.live." }, { status: 500 });
+  } catch {
+    console.error("Contact form submission failed.");
+    return NextResponse.json({ success: false, error: "We could not send your request. Please try again or call (844) 369-3312." }, { status: 500 });
   }
 }

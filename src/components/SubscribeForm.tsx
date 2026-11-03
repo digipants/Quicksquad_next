@@ -5,6 +5,7 @@ import { useState } from "react";
 export default function SubscribeForm() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [confirmationMessage, setConfirmationMessage] = useState("");
 
   return (
     <form
@@ -29,6 +30,7 @@ export default function SubscribeForm() {
 
           if (data.success) {
             setSuccess(true);
+            setConfirmationMessage(data.message || "Thank you for subscribing to Resolve US!");
             form.reset();
           } else {
             alert("Something went wrong");
@@ -74,7 +76,7 @@ export default function SubscribeForm() {
 
       {success && (
         <p className="text-green-200 text-sm text-center mt-2">
-          ✅ Thank you for subscribing QuickSquad!
+          {confirmationMessage}
         </p>
       )}
     </form>

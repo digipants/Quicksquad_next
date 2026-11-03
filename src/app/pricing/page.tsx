@@ -1,266 +1,43 @@
-"use client";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ChevronDown } from "lucide-react";
+import PricingCards from "@/components/PricingCards";
 
-import Image from "next/image";
-import { useState, useEffect } from "react";
+export const metadata: Metadata = {
+  title: "Pricing",
+  description: "Compare Resolve US consultation plans and view clear pricing and payment terms.",
+  openGraph: { url: "/pricing", title: "Pricing | Resolve US" },
+  alternates: { canonical: "/pricing" },
+};
 
-/* ---------- Types ---------- */
-interface Plan {
-  title: string;
-  price: number; // amount in cents
-  displayPrice: string;
-  features: string[];
-}
-
-interface Faq {
-  question: string;
-  answer: string;
-}
-
-/* ---------- Razorpay Types ---------- */
-interface RazorpayOptions {
-  key: string;
-  amount: number;
-  currency: string;
-  name: string;
-  description: string;
-  image?: string;
-  handler: (response: { razorpay_payment_id: string }) => void;
-  prefill?: {
-    name: string;
-    email: string;
-    contact: string;
-  };
-  theme?: {
-    color: string;
-  };
-}
-
-interface RazorpayInstance {
-  open: () => void;
-}
-
-declare global {
-  interface Window {
-    Razorpay: new (options: RazorpayOptions) => RazorpayInstance;
-  }
-}
-
-/* ---------- Data ---------- */
-const faqs: Faq[] = [
-  {
-    question: "What payment methods do you accept?",
-    answer:
-      "We accept all major credit and debit cards, UPI, net banking, and digital wallets. Payments can be made securely through our website.",
-  },
-  {
-    question: "Is my payment information secure?",
-    answer:
-      "Yes, we use industry-standard encryption and secure payment gateways to ensure your payment details are protected. We do not store any card information on our servers.",
-  },
-  {
-    question: "Do you offer refunds if I’m not satisfied with the service?",
-    answer:
-      "Yes, we have a refund policy based on the nature of the service provided. If you are not satisfied, please contact our team for assistance.",
-  },
-  {
-    question: "Can I get an invoice for my payment?",
-    answer:
-      "Absolutely! Once your payment is completed, you will receive an email with your invoice. You can also request a copy through our team.",
-  },
-  {
-    question: "Do you offer any discounts or subscription plans?",
-    answer:
-      "Yes, we offer special discounts for long-term consultation plans and business subscriptions. Check our website for the latest offers.",
-  },
-  {
-    question: "What should I do if my payment fails?",
-    answer:
-      "If your payment fails, please try again with a different method or contact your bank. You can also reach out to our team for assistance.",
-  },
+const faqs = [
+  { question: "What payment methods are available?", answer: "The Razorpay checkout displays the payment methods available for your region before you complete a payment." },
+  { question: "Does checkout automatically renew each month?", answer: "No. The current checkout processes a one-time payment and does not set up an automatic monthly renewal. The displayed Basic and Premium prices are monthly reference prices." },
+  { question: "Can I request an invoice or payment record?", answer: "Contact our team after payment if you need help with payment documentation." },
+  { question: "How do refunds work?", answer: "Please review our Refund Policy for how requests are assessed, or contact our team with questions." },
 ];
 
-const plans: Plan[] = [
-  {
-    title: "Basic Plan",
-    price: 2000,
-    displayPrice: "$20/month",
-    features: [
-      "Access to everyday consultation guidance",
-      "Help with common questions and planning decisions",
-      "Email and chat assistance",
-      "Clear next-step recommendations",
-    ],
-  },
-  {
-    title: "Premium Plan",
-    price: 7500,
-    displayPrice: "$75/month",
-    features: [
-      "Everything in the Basic Plan",
-      "Priority consultation handling",
-      "Deeper research and comparison guidance",
-      "Complex case coordination",
-    ],
-  },
-  {
-    title: "Enterprise Plan",
-    price: 0,
-    displayPrice: "Custom Pricing",
-    features: [
-      "Tailored solutions for businesses",
-      "Dedicated account manager",
-      "Phone, email, and chat consultation access",
-      "Scalability for teams, departments, and workflows",
-    ],
-  },
-];
-
-/* ---------- Component ---------- */
 export default function PricingPage() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [visibleCards, setVisibleCards] = useState<number>(0);
-
-  const toggleFAQ = (index: number) =>
-    setOpenIndex(openIndex === index ? null : index);
-
-  /* Load Razorpay script */
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://checkout.razorpay.com/v1/checkout.js";
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
-  /* Animate cards one by one */
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setVisibleCards((prev) => {
-        if (prev < plans.length) return prev + 1;
-        clearInterval(interval);
-        return prev;
-      });
-    }, 300);
-    return () => clearInterval(interval);
-  }, []);
-
-  /* Payment handler */
-  const handlePayment = (plan: Plan) => {
-    if (plan.price === 0) {
-      alert("Please contact us for Enterprise Plan pricing.");
-      return;
-    }
-
-    const options: RazorpayOptions = {
-      key: "rzp_test_RH1qkK5aG1oovC", // replace with live key in prod
-      amount: plan.price,
-      currency: "USD",
-      name: "QuickSquad",
-      description: `${plan.title} Subscription`,
-      image: "/images/logo.png",
-      handler(response) {
-        alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
-      },
-      prefill: {
-        name: "Customer Name",
-        email: "customer@example.com",
-        contact: "1234567890",
-      },
-      theme: { color: "#0ea5e9" },
-    };
-
-    const razorpay = new window.Razorpay(options);
-    razorpay.open();
-  };
-
   return (
-    <main className="bg-gray-50 min-h-screen py-16 px-6">
-      {/* Header */}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
-          OUR PRICING PLAN
-        </h1>
-        <p className="text-lg text-gray-600 mt-3 max-w-2xl mx-auto">
-          We provide flexible, transparent pricing to meet your budget and
-          consultation needs.
-        </p>
-      </div>
-
-      {/* Pricing Cards */}
-      <div className="container mx-auto grid md:grid-cols-3 gap-8 max-w-6xl mb-16">
-        {plans.map((plan, index) => (
-          <div
-            key={plan.title}
-            className={`bg-white rounded-2xl shadow-lg p-8 border flex flex-col transition-all duration-700 ease-out transform ${
-              visibleCards > index
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-10"
-            }`}
-          >
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">
-              {plan.title}
-            </h2>
-            <h3 className="text-xl text-blue-600 font-semibold mb-4">
-              {plan.displayPrice}
-            </h3>
-            <div className="border-b border-gray-200 mb-6" />
-            <ul className="space-y-3 flex-1">
-              {plan.features.map((feature) => (
-                <li key={feature} className="flex items-start gap-3">
-                  <Image
-                    width={20}
-                    height={20}
-                    src="https://cdn.prod.website-files.com/5746a22e485f3a03442bea0f/58c446970d703bb04aa5571f_confirm.svg"
-                    alt="check"
-                    className="w-5 h-5 mt-1"
-                  />
-                  <p className="text-gray-700">{feature}</p>
-                </li>
-              ))}
-            </ul>
-            <button
-              onClick={() => handlePayment(plan)}
-              className="mt-8 inline-block text-center bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition"
-            >
-              Subscribe
-            </button>
-          </div>
-        ))}
-      </div>
-
-      {/* FAQ */}
-      <div className="space-y-4 max-w-3xl mx-auto">
-        {faqs.map((faq, index) => (
-          <div
-            key={faq.question}
-            className="bg-white rounded-xl shadow-md p-4 cursor-pointer transition-all duration-300 ease-in-out"
-            onClick={() => toggleFAQ(index)}
-          >
-            <div className="flex items-center justify-between">
-              <h3 className="font-semibold text-gray-800">{faq.question}</h3>
-              <Image
-                width={16}
-                height={16}
-                src="https://cdn.prod.website-files.com/5746a22e485f3a03442bea0f/59a0272ee70cd600015ee73f_next.png"
-                alt="toggle"
-                className={`w-4 h-4 transform transition-transform duration-300 ${
-                  openIndex === index ? "rotate-90" : ""
-                }`}
-              />
-            </div>
-            <div
-              className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                openIndex === index ? "max-h-96 mt-2" : "max-h-0"
-              }`}
-            >
-              <p className="text-gray-700">{faq.answer}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+    <main className="min-h-screen bg-[linear-gradient(135deg,#f5f9ff,#fff_55%,#eff7ff)] px-5 py-14 text-[#0B2348] sm:px-8 md:px-10 md:py-20">
+      <section className="mx-auto max-w-[1180px]">
+        <div className="mx-auto mb-9 max-w-2xl text-center">
+          <span className="inline-flex rounded-full bg-blue-100 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wide text-[#0755D9]">Pricing</span>
+          <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-[#101B33] sm:text-5xl">Choose a plan that fits your needs</h1>
+          <p className="mt-3 text-base leading-7 text-slate-600 sm:text-lg">Get consultation, step-by-step guidance and follow-up support.</p>
+        </div>
+        <PricingCards interactive />
+        <p className="mx-auto mt-5 max-w-3xl text-center text-xs leading-5 text-slate-500">Basic and Premium prices are shown per month. The current checkout processes a one-time payment and does not set up automatic monthly renewal. Available payment methods and final terms are shown in checkout.</p>
+      </section>
+      <section className="mx-auto mt-16 max-w-3xl">
+        <h2 className="text-center text-2xl font-bold text-[#101B33]">Pricing questions</h2>
+        <div className="mt-6 space-y-3">
+          {faqs.map(({ question, answer }) => <details key={question} className="group rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-[#0B2348] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0755D9]">{question}<ChevronDown size={18} className="shrink-0 text-[#0755D9] transition-transform group-open:rotate-180" aria-hidden="true" /></summary>
+            <p className="mt-3 pr-8 text-sm leading-6 text-slate-600">{question.includes("refund") ? <>Please read our <Link href="/refund-policy" className="font-semibold text-[#0755D9] underline">Refund Policy</Link> or <Link href="/contact" className="font-semibold text-[#0755D9] underline">contact us</Link>.</> : answer}</p>
+          </details>)}
+        </div>
+      </section>
     </main>
   );
 }

@@ -146,14 +146,15 @@ export default function ContactPage() {
   <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[.8fr_1.2fr]">
     <aside className="h-fit rounded-2xl bg-slate-950 p-8 text-white shadow-lg">
       <p className="text-sm font-bold uppercase tracking-[0.16em] text-blue-300">Business transparency</p>
-      <h1 className="mt-3 text-3xl font-bold">Contact QuickSquad</h1>
-      <p className="mt-4 text-sm leading-6 text-slate-300">QuickSquad is a consumer-facing AI-powered consultation platform for everyday guidance and online tasks.</p>
-      <a href="tel:+18443121044" className="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-white px-4 py-3 text-center text-base font-bold text-blue-700 transition hover:bg-blue-50">Call Now: (844) 312-1044</a>
+      <h1 className="mt-3 text-3xl font-bold">Contact Resolve US</h1>
+      <p className="mt-4 text-sm leading-6 text-slate-300">Resolve US is a consumer-facing AI-powered consultation platform for everyday guidance and online tasks.</p>
+      <a href="tel:+18443693312" className="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-white px-4 py-3 text-center text-base font-bold text-blue-700 transition hover:bg-blue-50">Call Now: (844) 369-3312</a>
+      <p className="mt-5 text-sm">Legal operator: A V TRADE CORPORATION.</p>
       <dl className="mt-8 space-y-5 text-sm">
-        <div><dt className="font-semibold text-blue-200">Brand Name</dt><dd className="mt-1 text-white">QuickSquad</dd></div>
-        <div><dt className="font-semibold text-blue-200">Customer Support</dt><dd className="mt-1"><a className="text-white underline" href="mailto:support@quicksquad.live">support@quicksquad.live</a></dd></div>
-        <div><dt className="font-semibold text-blue-200">Phone</dt><dd className="mt-1"><a className="text-white underline" href="tel:+18443121044">(844) 312-1044</a></dd></div>
-        <div><dt className="font-semibold text-blue-200">Sales</dt><dd className="mt-1"><a className="text-white underline" href="mailto:sales@quicksquad.live">sales@quicksquad.live</a></dd></div>
+        <div><dt className="font-semibold text-blue-200">Brand Name</dt><dd className="mt-1 text-white">Resolve US</dd></div>
+        <div><dt className="font-semibold text-blue-200">Customer Support</dt><dd className="mt-1"><a className="text-white underline" href="/contact#consultation-form">Contact our team</a></dd></div>
+        <div><dt className="font-semibold text-blue-200">Phone</dt><dd className="mt-1"><a className="text-white underline" href="tel:+18443693312">(844) 369-3312</a></dd></div>
+        <div><dt className="font-semibold text-blue-200">Sales</dt><dd className="mt-1"><a className="text-white underline" href="/contact#consultation-form">Contact our team</a></dd></div>
         <div><dt className="font-semibold text-blue-200">Business Hours</dt><dd className="mt-1 text-slate-300">Customer Support availability is provided when you contact us.</dd></div>
       </dl>
     </aside>
@@ -162,7 +163,7 @@ export default function ContactPage() {
           Start a Consultation
         </h2>
         <p className="text-gray-600 text-center mb-8">
-          Tell us what you need help with. QuickSquad provides general guidance
+          Tell us what you need help with. Resolve US provides general guidance
           and consultation; regulated professional advice is not provided.
         </p>
 
@@ -175,14 +176,15 @@ export default function ContactPage() {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form id="consultation-form" onSubmit={handleSubmit} className="space-y-6">
           {/* Name */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
               Name
             </label>
             <input
               type="text"
+              id="name"
               name="name"
               required
               placeholder="Enter your name"
@@ -194,11 +196,12 @@ export default function ContactPage() {
 
           {/* Email */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
               Email
             </label>
             <input
               type="email"
+              id="email"
               name="email"
               required
               placeholder="Enter your email"
@@ -210,11 +213,12 @@ export default function ContactPage() {
 
           {/* Phone */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
               Phone Number
             </label>
             <input
               type="tel"
+              id="phone"
               name="phone"
               required
               placeholder="Enter your phone number"
@@ -224,10 +228,11 @@ export default function ContactPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
               Message
             </label>
             <textarea
+              id="message"
               name="message"
               required
               placeholder="Enter your message"
@@ -239,11 +244,12 @@ export default function ContactPage() {
 
           {/* Category */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">
               Category
             </label>
             <select
-            title="category"
+              id="category"
+              title="category"
               value={category}
               onChange={(e) => {
                 setCategory(e.target.value);
@@ -264,10 +270,11 @@ export default function ContactPage() {
           {/* Sub-category */}
           {category && (
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="sub-category" className="block text-sm font-medium text-gray-700 mb-1">
                 Sub-Category
               </label>
               <select
+                id="sub-category"
               title="Sub-category"
                 value={subCategory}
                 onChange={(e) => setSubCategory(e.target.value)}

@@ -23,13 +23,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://quicksquad.live"),
+  metadataBase: new URL("https://resolve-us.com"),
   title: {
-    default: "QuickSquad | AI-Powered Everyday Consultation",
-    template: "%s | QuickSquad",
+    default: "Resolve US | AI-Powered Everyday Consultation",
+    template: "%s | Resolve US",
   },
   description:
-    "QuickSquad is an AI-powered consultation platform providing everyday digital guidance across technology, finance, travel, government services, and more.",
+    "Resolve US is an AI-powered consultation platform providing everyday digital guidance across technology, finance, travel, government services, and more.",
   keywords: [
     "consultation services",
     "online consultation",
@@ -40,24 +40,24 @@ export const metadata: Metadata = {
     "digital services",
     "career guidance",
     "consumer assistance",
-    "QuickSquad",
+    "Resolve US",
   ],
-  authors: [{ name: "QuickSquad", url: "https://quicksquad.live" }],
-  creator: "QuickSquad",
-  publisher: "QuickSquad",
+  authors: [{ name: "Resolve US", url: "https://resolve-us.com" }],
+  creator: "Resolve US",
+  publisher: "Resolve US",
   category: "Consumer consultation services",
   openGraph: {
-    title: "QuickSquad | AI-Powered Everyday Consultation",
+    title: "Resolve US | AI-Powered Everyday Consultation",
     description:
       "Trusted general guidance for technology, finance, travel, digital accounts, government services, healthcare, shopping, and more.",
-    url: "https://quicksquad.live",
-    siteName: "QuickSquad",
+    url: "https://resolve-us.com",
+    siteName: "Resolve US",
     images: [
       {
-        url: "https://quicksquad.live/images/quicksquad_og.png",
+        url: "https://resolve-us.com/images/resolve-us-og.png",
         width: 1200,
         height: 630,
-        alt: "QuickSquad Consultation Services",
+        alt: "Resolve US Consultation Services",
       },
     ],
     locale: "en_US",
@@ -65,11 +65,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "QuickSquad | AI-Powered Everyday Consultation",
+    title: "Resolve US | AI-Powered Everyday Consultation",
     description:
       "General consumer guidance across everyday online tasks and questions.",
-    images: ["https://quicksquad.live/images/quicksquad_og.png"],
-    creator: "@QuickSquad",
+    images: ["https://resolve-us.com/images/resolve-us-og.png"],
   },
   alternates: {
     canonical: "/",
@@ -82,23 +81,25 @@ const structuredData = {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://quicksquad.live/#organization",
-      name: "QuickSquad",
+      "@id": "https://resolve-us.com/#organization",
+      name: "A V TRADE CORPORATION",
+      brand: { "@type": "Brand", name: "Resolve US" },
       description: "AI-powered consumer consultation platform for everyday online tasks and questions.",
-      url: "https://quicksquad.live",
-      email: "support@quicksquad.live",
+      url: "https://resolve-us.com",
+      legalName: "A V TRADE CORPORATION",
+      telephone: "+1-844-369-3312",
     },
     {
       "@type": "WebSite",
-      "@id": "https://quicksquad.live/#website",
-      name: "QuickSquad",
-      url: "https://quicksquad.live",
-      publisher: { "@id": "https://quicksquad.live/#organization" },
+      "@id": "https://resolve-us.com/#website",
+      name: "Resolve US",
+      url: "https://resolve-us.com",
+      publisher: { "@id": "https://resolve-us.com/#organization" },
     },
     {
       "@type": "Service",
-      name: "QuickSquad Everyday Consultation Services",
-      provider: { "@id": "https://quicksquad.live/#organization" },
+      name: "Resolve US Everyday Consultation Services",
+      provider: { "@id": "https://resolve-us.com/#organization" },
       serviceType: "AI-powered consumer guidance and consultation",
       areaServed: "Worldwide",
       description: "General guidance for technology, finance, travel, digital accounts, shopping, career, healthcare information, government-service tasks, and everyday online help.",
@@ -106,13 +107,13 @@ const structuredData = {
     {
       "@type": "FAQPage",
       mainEntity: [
-        { "@type": "Question", name: "What does QuickSquad provide?", acceptedAnswer: { "@type": "Answer", text: "QuickSquad provides general consumer guidance and consultation for everyday questions and online tasks." } },
-        { "@type": "Question", name: "Is QuickSquad a bank, law firm, medical provider, investment adviser, or government agency?", acceptedAnswer: { "@type": "Answer", text: "No. QuickSquad does not provide regulated professional services. Information is general and educational; consult qualified professionals when required." } },
+        { "@type": "Question", name: "What does Resolve US provide?", acceptedAnswer: { "@type": "Answer", text: "Resolve US provides general consumer guidance and consultation for everyday questions and online tasks." } },
+        { "@type": "Question", name: "Is Resolve US a bank, law firm, medical provider, investment adviser, or government agency?", acceptedAnswer: { "@type": "Answer", text: "No. Resolve US does not provide regulated professional services. Information is general and educational; consult qualified professionals when required." } },
       ],
     },
     {
       "@type": "BreadcrumbList",
-      itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://quicksquad.live" }],
+      itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://resolve-us.com" }],
     },
   ],
 };

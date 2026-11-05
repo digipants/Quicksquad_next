@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { cookies, headers } from "next/headers";
@@ -21,6 +21,8 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+export const viewport: Viewport = { themeColor: "#091D35" };
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://resolve-us.com"),

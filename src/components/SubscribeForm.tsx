@@ -62,7 +62,7 @@ export default function SubscribeForm() {
 
       <button
         disabled={loading}
-        className="w-full bg-blue-700 py-2 rounded font-semibold flex items-center cursor-pointer justify-center gap-2 disabled:opacity-60"
+        className="w-full bg-teal-700 py-2 rounded font-semibold flex items-center cursor-pointer justify-center gap-2 disabled:opacity-60"
       >
         {loading ? (
           <>

@@ -21,7 +21,7 @@ export default function BlogCard({ title, image, date, url, description }: BlogC
 
       {/* Blog Content */}
       <div className="p-5">
-        <p className="flex items-center text-sm text-blue-600 mb-2">
+        <p className="flex items-center text-sm text-teal-600 mb-2">
           <FaRegClock className="mr-2" /> {date}
         </p>
         <h3 className="font-semibold text-gray-600 text-lg mb-2">{title}</h3>

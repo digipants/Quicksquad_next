@@ -37,7 +37,7 @@ export default function ChatWidget() {
             "https://chatgpt-widget-test-production.up.railway.app/quicksquad-ai",
           title: "ResolveUS",
           subtitle: "AI Assistant",
-          brand: { primary: "#0ea5e9" },
+          brand: { primary: "#0C7974" },
           quickPrompts: [
             "Open a bank account online",
             "Compare two travel insurance options",

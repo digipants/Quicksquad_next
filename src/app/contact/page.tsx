@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface Category {
   title: string;
@@ -79,10 +79,38 @@ const allCategories: Category[] = [
   },
 ];
 
+// Map public help-topic links to the contact form's existing, approved categories.
+const helpTopicToCategory: Record<string, string> = {
+  Banking: "Banking & Financial Guidance",
+  Finance: "Banking & Financial Guidance",
+  "Banking & Finance Guidance": "Banking & Financial Guidance",
+  Technology: "Technology & Internet Guidance",
+  "Technology Assistance": "Technology & Internet Guidance",
+  Government: "Government Services Guidance",
+  "Government Services": "Government Services Guidance",
+  Shopping: "Consumer & Shopping Assistance",
+  "Shopping Assistance": "Consumer & Shopping Assistance",
+  Travel: "Travel & Transportation",
+  "Travel Planning": "Travel & Transportation",
+  Healthcare: "Healthcare & Wellness",
+  "Healthcare Information": "Healthcare & Wellness",
+  Career: "Education & Career Guidance",
+  "Career Guidance": "Education & Career Guidance",
+  "Digital Accounts": "Digital Account & Online Services",
+};
+
 export default function ContactPage() {
   const submitting = useRef(false);
   const [category, setCategory] = useState("");
   const [subCategory, setSubCategory] = useState("");
+
+  // Preselect the actual enquiry category when a topic card is the entry point.
+  useEffect(() => {
+    const topic = new URLSearchParams(window.location.search).get("category");
+    if (!topic) return;
+    const resolved = helpTopicToCategory[topic] || topic;
+    if (allCategories.some((item) => item.title === resolved)) setCategory(resolved);
+  }, []);
   const [loading, setLoading] = useState(false);
   const [formStatus, setFormStatus] = useState<{ type: "success" | "error"; message: string } | null>(null);
 
@@ -190,7 +218,7 @@ export default function ContactPage() {
           </div>
         )}
 
-        <form id="consultation-form" onSubmit={handleSubmit} className="space-y-6">
+        <form id="consultation-form" onSubmit={handleSubmit} className="scroll-mt-28 space-y-6">
           {/* Name */}
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">

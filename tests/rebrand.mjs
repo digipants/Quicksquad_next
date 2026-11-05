@@ -276,6 +276,38 @@ test('ResolveUS is prominently visible in landing-page headings', () => {
   assert.ok(dashHero.includes('Device Care'));
 });
 
+test('navigation is concise and topic links guide enquiries', () => {
+  const header = fs.readFileSync('src/components/SiteHeader.tsx', 'utf8');
+  const footer = fs.readFileSync('src/components/SiteFooter.tsx', 'utf8');
+  const home = fs.readFileSync('src/app/page.tsx', 'utf8');
+  const contact = fs.readFileSync('src/app/contact/page.tsx', 'utf8');
+
+  assert.match(header, /label: "Help Topics"/);
+  assert.match(header, /href: "\/services#categories"/);
+  assert.match(header, /label: "Device Care"/);
+  assert.match(header, /href: "\/dashprotection"/);
+  assert.doesNotMatch(header, /Consultation Categories|ChevronDown|<details|<summary|How It Works/);
+  assert.doesNotMatch(header, /label: "Home"/);
+  assert.match(header, /xl:flex/);
+  assert.match(header, /xl:hidden/);
+  assert.match(header, /aria-expanded=\{open\}/);
+  assert.match(header, /onClick=\{\(\) => setOpen\(false\)\}/);
+  assert.match(footer, /const exploreLinks =/);
+  assert.match(footer, /exploreLinks\.map/);
+  assert.match(footer, /<Link href=\{item.href\}/);
+  assert.match(home, /categoryChips\.map\(\(\{ label, Icon, href \}\)/);
+  assert.match(home, /href=\{href\}/);
+  assert.match(home, /encodeURIComponent\(service\.title\)/);
+  assert.match(contact, /new URLSearchParams\(window\.location\.search\)/);
+  assert.match(contact, /helpTopicToCategory\[topic\]/);
+  assert.match(contact, /allCategories\.some/);
+  assert.match(contact, /id="consultation-form".*scroll-mt-28/);
+
+  // Preserve the prominent business name while Google Ads review is ongoing.
+  assert.match(home, /ResolveUS provides practical guidance/);
+  assert.match(footer, /Legal operator: A V Food Factory/);
+});
+
 test('new phone number and public brand presentation are consistent', () => {
   const files = ['src/components/SiteHeader.tsx', 'src/components/SiteFooter.tsx', 'src/app/contact/page.tsx', 'src/app/page.tsx', 'src/app/api/send-email/route.ts', 'src/app/layout.tsx'];
   const application = files.map(file => fs.readFileSync(file, 'utf8')).join('\n');

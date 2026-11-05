@@ -18,11 +18,11 @@ const iconMap = {
 } as const;
 
 const categoryChips = [
-  { label: "Digital Accounts", Icon: Laptop },
-  { label: "Travel Planning", Icon: Plane },
-  { label: "Banking & Finance Guidance", Icon: WalletCards },
-  { label: "Shopping Assistance", Icon: ShoppingBag },
-  { label: "Career Guidance", Icon: BriefcaseBusiness },
+  { label: "Digital Accounts", Icon: Laptop, href: "/services#digital-accounts" },
+  { label: "Travel Planning", Icon: Plane, href: "/services#travel" },
+  { label: "Banking & Finance Guidance", Icon: WalletCards, href: "/services#banking" },
+  { label: "Shopping Assistance", Icon: ShoppingBag, href: "/services#shopping" },
+  { label: "Career Guidance", Icon: BriefcaseBusiness, href: "/services#career" },
 ];
 
 export default function Home() {
@@ -41,7 +41,7 @@ export default function Home() {
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <Link href="/contact#consultation-form" className="inline-flex min-h-14 items-center justify-center gap-3 rounded-2xl bg-[#0C7974] px-7 text-base font-bold text-white shadow-[0_8px_20px_rgba(12,121,116,.2)] transition hover:-translate-y-0.5 hover:bg-[#096761] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0C7974] focus-visible:ring-offset-2 sm:text-lg">Get Consultation <ArrowRight size={21} aria-hidden="true" /></Link>
-              <Link href="#categories" className="inline-flex min-h-14 items-center justify-center rounded-2xl border border-[#0B2540] px-7 text-base font-bold text-[#0B2540] transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0C7974] sm:text-lg">Explore Categories</Link>
+              <Link href="#categories" className="inline-flex min-h-14 items-center justify-center rounded-2xl border border-[#0B2540] px-7 text-base font-bold text-[#0B2540] transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0C7974] sm:text-lg">Browse Help Topics</Link>
             </div>
             <div className="mt-8 flex flex-wrap gap-x-7 gap-y-3 text-sm font-semibold text-slate-800 sm:gap-x-9">
               <span className="inline-flex items-center gap-2"><CheckCircle2 className="text-[#0C7974]" size={21} aria-hidden="true" /> Practical Guidance</span>
@@ -56,8 +56,8 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-r from-[#F1FAF8]/35 via-transparent to-[#C6EEE7]/15" aria-hidden="true" />
             </div>
             <div className="absolute left-3 top-3 flex max-w-[245px] flex-col items-start gap-2 sm:left-4 sm:top-6 sm:gap-3 lg:left-5 lg:top-7">
-              {categoryChips.map(({ label, Icon }) => <Link key={label} href="/services#categories" className="inline-flex max-w-full items-center gap-2.5 rounded-full border border-white/80 bg-white/95 px-3.5 py-2 text-xs font-semibold text-[#0B2540] shadow-[0_7px_22px_rgba(9,29,53,.1)] transition hover:-translate-x-1 hover:text-[#0C7974] sm:px-4 sm:py-2.5 sm:text-sm"><Icon size={17} className="shrink-0 text-[#0C7974]" aria-hidden="true" /><span>{label}</span></Link>)}
-              <Link href="/services#categories" className="rounded-full bg-white/95 px-4 py-2 text-xs font-semibold text-[#0C7974] shadow sm:py-2.5 sm:text-sm">+ More Categories</Link>
+              {categoryChips.map(({ label, Icon, href }) => <Link key={label} href={href} className="inline-flex max-w-full items-center gap-2.5 rounded-full border border-white/80 bg-white/95 px-3.5 py-2 text-xs font-semibold text-[#0B2540] shadow-[0_7px_22px_rgba(9,29,53,.1)] transition hover:-translate-x-1 hover:text-[#0C7974] sm:px-4 sm:py-2.5 sm:text-sm"><Icon size={17} className="shrink-0 text-[#0C7974]" aria-hidden="true" /><span>{label}</span></Link>)}
+              <Link href="/services#categories" className="rounded-full bg-white/95 px-4 py-2 text-xs font-semibold text-[#0C7974] shadow sm:py-2.5 sm:text-sm">All Help Topics</Link>
             </div>
           </div>
         </div>
@@ -86,7 +86,7 @@ export default function Home() {
       <section id="categories" className="scroll-mt-24 bg-white px-5 py-16 sm:px-8 md:px-10 md:py-20">
         <div className="mx-auto max-w-[1240px]">
           <div className="mx-auto mb-10 max-w-2xl text-center">
-            <span className="inline-flex rounded-full bg-teal-50 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wide text-[#0C7974]">Consultation Categories</span>
+            <span className="inline-flex rounded-full bg-teal-50 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wide text-[#0C7974]">Help Topics</span>
             <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-[#091D35] sm:text-4xl">Guidance for the things you do every day</h2>
             <p className="mt-3 text-base leading-7 text-slate-600 sm:text-lg">Choose a category to explore practical help for common questions and online tasks.</p>
           </div>
@@ -97,11 +97,11 @@ export default function Home() {
                 <span className="grid h-11 w-11 place-items-center rounded-xl bg-teal-50 text-[#0C7974] transition group-hover:bg-[#0C7974] group-hover:text-white"><Icon size={23} aria-hidden="true" /></span>
                 <h3 className="mt-4 text-lg font-bold text-[#0B2540]">{service.title}</h3>
                 <p className="mt-2 text-sm leading-6 text-slate-600">{service.description}</p>
-                <Link href="/contact#consultation-form" className="mt-auto pt-4 text-sm font-bold text-[#0C7974] hover:text-[#0B2540] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0C7974]">Start a consultation <span aria-hidden="true">→</span></Link>
+                <Link href={"/contact?category=" + encodeURIComponent(service.title) + "#consultation-form"} className="mt-auto pt-4 text-sm font-bold text-[#0C7974] hover:text-[#0B2540] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0C7974]">Start a consultation <span aria-hidden="true">→</span></Link>
               </article>;
             })}
           </div>
-          <div className="mt-8 text-center"><Link href="/services#categories" className="inline-flex items-center gap-2 rounded-xl border border-slate-300 px-5 py-3 text-sm font-bold text-[#0B2540] transition hover:border-[#0C7974] hover:text-[#0C7974]">View all consultation categories <ArrowRight size={17} aria-hidden="true" /></Link></div>
+          <div className="mt-8 text-center"><Link href="/services#categories" className="inline-flex items-center gap-2 rounded-xl border border-slate-300 px-5 py-3 text-sm font-bold text-[#0B2540] transition hover:border-[#0C7974] hover:text-[#0C7974]">Browse all help topics <ArrowRight size={17} aria-hidden="true" /></Link></div>
         </div>
       </section>
 

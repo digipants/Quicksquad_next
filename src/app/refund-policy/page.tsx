@@ -13,7 +13,7 @@ export default function RefundPolicyPage() {
       <article className="mx-auto max-w-4xl rounded-2xl bg-white p-7 shadow-sm ring-1 ring-slate-200 sm:p-12">
         <p className="text-sm font-bold uppercase tracking-[.16em] text-blue-700">ResolveUS legal</p>
         <h1 className="mt-4 text-4xl font-bold text-slate-950">Refund Policy</h1>
-        <p className="mt-5 text-lg leading-8">ResolveUS is a consumer-facing brand operated by A V Food Factory. This policy explains how we review refund requests for consultation services and plans.</p>
+        <p className="mt-5 text-lg leading-8">ResolveUS is a consumer-facing brand operated by A V Food Factory. This policy explains how we review refund requests for consultation services, DashProtection device-care services and plans.</p>
         <div className="mt-10 space-y-8 leading-7">
           <section>
             <h2 className="text-xl font-bold text-slate-900">1. How to request a refund</h2>

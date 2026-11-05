@@ -186,6 +186,37 @@ test('ResolveUS brand and updated legal operator are present in metadata', () =>
   }
 });
 
+test('DashProtection integration retains device topics, separate plans and a safe enquiry', () => {
+  const dashPage = fs.readFileSync('src/app/dashprotection/page.tsx', 'utf8');
+  const catalog = fs.readFileSync('src/lib/dashprotection.ts', 'utf8');
+  const dashForm = fs.readFileSync('src/components/DashProtectionEnquiry.tsx', 'utf8');
+  const home = fs.readFileSync('src/app/page.tsx', 'utf8');
+  const header = fs.readFileSync('src/components/SiteHeader.tsx', 'utf8');
+  const footer = fs.readFileSync('src/components/SiteFooter.tsx', 'utf8');
+  const sitemap = fs.readFileSync('src/app/sitemap.ts', 'utf8');
+  const email = fs.readFileSync('src/app/api/send-email/route.ts', 'utf8');
+  const terms = fs.readFileSync('src/app/terms-of-service/page.tsx', 'utf8');
+  const privacy = fs.readFileSync('src/app/privacy-policy/page.tsx', 'utf8');
+  assert.match(dashPage, /canonical: "\/dashprotection"/);
+  assert.match(home, /Explore DashProtection/);
+  assert.match(header, /href: "\/dashprotection"/);
+  assert.match(footer, /href: "\/dashprotection"/);
+  assert.match(sitemap, /"\/dashprotection"/);
+  for (const category of ['Cameras & Camcorders', 'Mobile Phones', 'Computers & Tablets', 'Kitchen Appliances', 'Smart Home Devices', 'Car Electronics', 'Network Connections', 'Server Issues']) {
+    assert.ok(catalog.includes(category), category);
+  }
+  for (const price of ['$20', '$75', 'Custom']) assert.ok(catalog.includes(price), price);
+  assert.match(dashForm, /category: "DashProtection Device Care"/);
+  assert.match(dashForm, /\/api\/send-email/);
+  assert.match(dashForm, /"event", "generate_lead"/);
+  assert.match(dashForm, /consent\.analytics === true/);
+  assert.match(email, /isDeviceCare = category === "DashProtection Device Care"/);
+  assert.match(terms, /DashProtection device-care plans/);
+  assert.match(privacy, /device issue description/);
+  assert.doesNotMatch(dashPage, /500K|2K|25\+|Lorem ipsum|plumbing\.com|25 years/i);
+  assert.match(dashPage, /No payment or card details are collected here/);
+});
+
 test('new phone number and public brand presentation are consistent', () => {
   const files = ['src/components/SiteHeader.tsx', 'src/components/SiteFooter.tsx', 'src/app/contact/page.tsx', 'src/app/page.tsx', 'src/app/api/send-email/route.ts', 'src/app/layout.tsx'];
   const application = files.map(file => fs.readFileSync(file, 'utf8')).join('\n');

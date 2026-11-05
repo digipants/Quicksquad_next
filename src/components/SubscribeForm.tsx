@@ -30,7 +30,7 @@ export default function SubscribeForm() {
 
           if (data.success) {
             setSuccess(true);
-            setConfirmationMessage(data.message || "Thank you for subscribing to Resolve US!");
+            setConfirmationMessage(data.message || "Thank you for subscribing to ResolveUS!");
             form.reset();
           } else {
             alert("Something went wrong");

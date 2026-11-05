@@ -48,7 +48,7 @@ for (const [route, body] of [['send-email', contact], ['subscribe', { name: '<Te
     while (!release) await new Promise(resolve => setImmediate(resolve));
     assert.equal(finished, false);
     assert.equal(calls.length, 2);
-    assert.equal(calls[0].from, '"Resolve US" <existing@example.com>');
+    assert.equal(calls[0].from, '"ResolveUS" <existing@example.com>');
     assert.equal(calls[1].to, 'test@example.com');
     assert.ok(calls[0].html.includes('&lt;Test&gt;') || calls[0].html.includes('&#60;Test&#62;'));
     assert.ok(!calls[0].html.includes('quicksquad.live'));
@@ -67,7 +67,7 @@ for (const [route, body] of [['send-email', contact], ['subscribe', { name: '<Te
   });
 }
 
-test('AI keeps model and prompt while using Resolve US identity', async () => {
+test('AI keeps model and prompt while using ResolveUS identity', async () => {
   const originalFetch = global.fetch;
   let sent;
   global.fetch = async (_url, options) => {
@@ -78,7 +78,7 @@ test('AI keeps model and prompt while using Resolve US identity', async () => {
     const response = await load('src/app/api/chat/route.ts').POST(request({ message: 'Help with travel' }));
     assert.equal((await response.json()).reply, 'Mock answer');
     assert.equal(sent.model, 'gpt-3.5-turbo');
-    assert.match(sent.messages[0].content, /Resolve US/);
+    assert.match(sent.messages[0].content, /ResolveUS/);
     assert.equal(sent.messages[1].content, 'Help with travel');
   } finally { global.fetch = originalFetch; }
 });
@@ -91,7 +91,7 @@ test('baseline plan prices, features and consultation categories remain unchange
     ['src/app/contact/page.tsx', /const allCategories: Category\[\] = \[[\s\S]*?\n\];/],
     ['src/app/services/page.tsx', /const services = \[[\s\S]*?\n\];/]
   ]) {
-    assert.equal(fs.readFileSync(file, 'utf8').match(expression)[0], baseline(file).match(expression)[0].replaceAll('QuickSquad', 'Resolve US'));
+    assert.equal(fs.readFileSync(file, 'utf8').match(expression)[0], baseline(file).match(expression)[0].replaceAll('QuickSquad', 'ResolveUS'));
   }
 });
 
@@ -162,13 +162,28 @@ test('legal pages provide refund email and clear issuance deadline', () => {
   const terms = fs.readFileSync('src/app/terms-of-service/page.tsx', 'utf8');
   const privacy = fs.readFileSync('src/app/privacy-policy/page.tsx', 'utf8');
   const disclaimer = fs.readFileSync('src/app/disclaimer/page.tsx', 'utf8');
+  const formerOperator = ['A V', 'TRADE', 'CORPORATION'].join(' ');
   for (const text of [refund, terms, privacy, disclaimer]) {
     assert.match(text, /mailto:support@resolve-us\.com/);
-    assert.match(text, /A V TRADE CORPORATION/);
+    assert.match(text, /A V Food Factory/);
+    assert.doesNotMatch(text, new RegExp(formerOperator));
   }
   assert.match(refund, /14 calendar days after approval/);
   assert.match(refund, /does not accept payments/);
   assert.match(terms, /website does not accept payments/);
+});
+
+test('ResolveUS brand and updated legal operator are present in metadata', () => {
+  const layout = fs.readFileSync('src/app/layout.tsx', 'utf8');
+  const logo = fs.readFileSync('public/images/resolve-us-logo.svg', 'utf8');
+  assert.match(layout, /name: "A V Food Factory"/);
+  assert.match(layout, /legalName: "A V Food Factory"/);
+  assert.match(layout, /brand: \{ "@type": "Brand", name: "ResolveUS" \}/);
+  assert.match(logo, /<title id="title">ResolveUS<\/title>/);
+  for (const file of ['src/components/SiteHeader.tsx', 'src/components/SiteFooter.tsx', 'src/app/contact/page.tsx']) {
+    const source = fs.readFileSync(file, 'utf8');
+    assert.doesNotMatch(source, /Resolve\s+US/);
+  }
 });
 
 test('new phone number and public brand presentation are consistent', () => {

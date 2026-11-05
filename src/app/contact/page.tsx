@@ -159,12 +159,12 @@ export default function ContactPage() {
   <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[.8fr_1.2fr]">
     <aside className="h-fit rounded-2xl bg-slate-950 p-8 text-white shadow-lg">
       <p className="text-sm font-bold uppercase tracking-[0.16em] text-blue-300">Business transparency</p>
-      <h1 className="mt-3 text-3xl font-bold">Contact Resolve US</h1>
-      <p className="mt-4 text-sm leading-6 text-slate-300">Resolve US is a consumer-facing AI-powered consultation platform for everyday guidance and online tasks.</p>
+      <h1 className="mt-3 text-3xl font-bold">Contact ResolveUS</h1>
+      <p className="mt-4 text-sm leading-6 text-slate-300">ResolveUS is a consumer-facing AI-powered consultation platform for everyday guidance and online tasks.</p>
       <a href="tel:+18443693312" className="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-white px-4 py-3 text-center text-base font-bold text-blue-700 transition hover:bg-blue-50">Call Now: (844) 369-3312</a>
-      <p className="mt-5 text-sm">Legal operator: A V TRADE CORPORATION.</p>
+      <p className="mt-5 text-sm">Legal operator: A V Food Factory.</p>
       <dl className="mt-8 space-y-5 text-sm">
-        <div><dt className="font-semibold text-blue-200">Brand Name</dt><dd className="mt-1 text-white">Resolve US</dd></div>
+        <div><dt className="font-semibold text-blue-200">Brand Name</dt><dd className="mt-1 text-white">ResolveUS</dd></div>
         <div><dt className="font-semibold text-blue-200">Customer Support</dt><dd className="mt-1"><a className="text-white underline" href="/contact#consultation-form">Contact our team</a></dd></div>
         <div><dt className="font-semibold text-blue-200">Support &amp; refunds</dt><dd className="mt-1"><a className="break-all text-white underline" href="mailto:support@resolve-us.com">support@resolve-us.com</a></dd></div>
         <div><dt className="font-semibold text-blue-200">Phone</dt><dd className="mt-1"><a className="text-white underline" href="tel:+18443693312">(844) 369-3312</a></dd></div>
@@ -177,7 +177,7 @@ export default function ContactPage() {
           Start a Consultation
         </h2>
         <p className="text-gray-600 text-center mb-8">
-          Tell us what you need help with. Resolve US provides general guidance
+          Tell us what you need help with. ResolveUS provides general guidance
           and consultation; regulated professional advice is not provided. No payments are accepted through this site. Please do not include payment-card details or account passwords in your message.
         </p>
 

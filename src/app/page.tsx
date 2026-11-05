@@ -97,7 +97,7 @@ export default function Home() {
               ["03", "Explore next steps", "Get practical information and guidance to help you decide what to do next."],
             ].map(([number, title, description]) => <li key={number} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"><span className="text-sm font-extrabold tracking-widest text-[#2585FF]">{number}</span><h3 className="mt-3 text-xl font-bold text-[#0B2348]">{title}</h3><p className="mt-2 text-sm leading-6 text-slate-600">{description}</p></li>)}
           </ol>
-          <p className="mt-6 text-center text-sm text-slate-500">Resolve US provides general information and consultation, not regulated professional advice.</p>
+          <p className="mt-6 text-center text-sm text-slate-500">ResolveUS provides general information and consultation, not regulated professional advice.</p>
         </div>
       </section>
 

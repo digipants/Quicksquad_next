@@ -25,11 +25,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://resolve-us.com"),
   title: {
-    default: "Resolve US | AI-Powered Everyday Consultation",
-    template: "%s | Resolve US",
+    default: "ResolveUS | AI-Powered Everyday Consultation",
+    template: "%s | ResolveUS",
   },
   description:
-    "Resolve US is an AI-powered consultation platform providing everyday digital guidance across technology, finance, travel, government services, and more.",
+    "ResolveUS is an AI-powered consultation platform providing everyday digital guidance across technology, finance, travel, government services, and more.",
   keywords: [
     "consultation services",
     "online consultation",
@@ -40,24 +40,24 @@ export const metadata: Metadata = {
     "digital services",
     "career guidance",
     "consumer assistance",
-    "Resolve US",
+    "ResolveUS",
   ],
-  authors: [{ name: "Resolve US", url: "https://resolve-us.com" }],
-  creator: "Resolve US",
-  publisher: "Resolve US",
+  authors: [{ name: "ResolveUS", url: "https://resolve-us.com" }],
+  creator: "ResolveUS",
+  publisher: "ResolveUS",
   category: "Consumer consultation services",
   openGraph: {
-    title: "Resolve US | AI-Powered Everyday Consultation",
+    title: "ResolveUS | AI-Powered Everyday Consultation",
     description:
       "Trusted general guidance for technology, finance, travel, digital accounts, government services, healthcare, shopping, and more.",
     url: "https://resolve-us.com",
-    siteName: "Resolve US",
+    siteName: "ResolveUS",
     images: [
       {
         url: "https://resolve-us.com/images/resolve-us-og.png",
         width: 1200,
         height: 630,
-        alt: "Resolve US Consultation Services",
+        alt: "ResolveUS Consultation Services",
       },
     ],
     locale: "en_US",
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Resolve US | AI-Powered Everyday Consultation",
+    title: "ResolveUS | AI-Powered Everyday Consultation",
     description:
       "General consumer guidance across everyday online tasks and questions.",
     images: ["https://resolve-us.com/images/resolve-us-og.png"],
@@ -82,23 +82,23 @@ const structuredData = {
     {
       "@type": "Organization",
       "@id": "https://resolve-us.com/#organization",
-      name: "A V TRADE CORPORATION",
-      brand: { "@type": "Brand", name: "Resolve US" },
+      name: "A V Food Factory",
+      brand: { "@type": "Brand", name: "ResolveUS" },
       description: "AI-powered consumer consultation platform for everyday online tasks and questions.",
       url: "https://resolve-us.com",
-      legalName: "A V TRADE CORPORATION",
+      legalName: "A V Food Factory",
       telephone: "+1-844-369-3312",
     },
     {
       "@type": "WebSite",
       "@id": "https://resolve-us.com/#website",
-      name: "Resolve US",
+      name: "ResolveUS",
       url: "https://resolve-us.com",
       publisher: { "@id": "https://resolve-us.com/#organization" },
     },
     {
       "@type": "Service",
-      name: "Resolve US Everyday Consultation Services",
+      name: "ResolveUS Everyday Consultation Services",
       provider: { "@id": "https://resolve-us.com/#organization" },
       serviceType: "AI-powered consumer guidance and consultation",
       description: "General guidance for technology, finance, travel, digital accounts, shopping, career, healthcare information, government-service tasks, and everyday online help.",

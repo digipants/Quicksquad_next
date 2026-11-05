@@ -86,11 +86,11 @@ export default function ChatWidget() {
                      bg-white/95 shadow-2xl ring-1 ring-black/10
                      flex flex-col overflow-hidden"
           role="dialog"
-          aria-label="Resolve US AI Assistant"
+          aria-label="ResolveUS AI Assistant"
         >
           {/* Header */}
           <div className="p-4 font-semibold text-white bg-blue-500 flex justify-between items-center">
-            <span>Resolve US AI Assistant</span>
+            <span>ResolveUS AI Assistant</span>
             <button
               onClick={toggleWidget}
               className="px-2 py-1 rounded hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"

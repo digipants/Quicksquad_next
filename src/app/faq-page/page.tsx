@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const faqs = [
   { question: "How do I request a consultation?", answer: "Select a category and use the consultation form. Our team will follow up about the scope and next steps." },
-  { question: "Can I make a payment on the website?", answer: "No. Resolve US does not accept or record payments or payment details on this website. Any agreed payment arrangements are handled separately." },
+  { question: "Can I make a payment on the website?", answer: "No. ResolveUS does not accept or record payments or payment details on this website. Any agreed payment arrangements are handled separately." },
   { question: "Do you offer monthly plans?", answer: "Basic is $20/month, Premium is $75/month, and Enterprise is quoted individually. These rates do not initiate automatic billing through this website." },
   { question: "How can I request a refund?", answer: "Email support@resolve-us.com with your purchase information and reason for the request. Eligible refunds are issued within 14 calendar days after approval." },
   { question: "Can I obtain billing documentation?", answer: "Contact support@resolve-us.com for assistance with documentation relating to any agreed payment outside the website." },

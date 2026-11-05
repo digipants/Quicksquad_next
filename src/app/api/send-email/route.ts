@@ -42,24 +42,24 @@ export async function POST(req: Request) {
     });
 
     const safe = { name: escapeHtml(name), email: escapeHtml(email), phone: escapeHtml(phone), message: escapeHtml(message).replace(/\n/g, "<br />"), category: escapeHtml(category), subCategory: escapeHtml(subCategory) };
-    const brandFrom = `"Resolve US" <${from}>`;
+    const brandFrom = `"ResolveUS" <${from}>`;
 
     await transporter.sendMail({
       from: brandFrom,
       to: inbox,
       replyTo: email,
-      subject: `New Resolve US consultation request from ${name}`,
+      subject: `New ResolveUS consultation request from ${name}`,
       text: `New consultation request\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nCategory: ${category}\nSub-category: ${subCategory}\n\nMessage:\n${message}`,
-      html: `<div style="font-family:Arial,sans-serif;color:#1e293b;line-height:1.55"><h2 style="color:#1d4ed8">New Resolve US consultation request</h2><p>Submitted through resolve-us.com.</p><table cellpadding="6"><tr><td><strong>Name</strong></td><td>${safe.name}</td></tr><tr><td><strong>Email</strong></td><td>${safe.email}</td></tr><tr><td><strong>Phone</strong></td><td>${safe.phone}</td></tr><tr><td><strong>Category</strong></td><td>${safe.category}</td></tr><tr><td><strong>Sub-category</strong></td><td>${safe.subCategory}</td></tr></table><h3>Message</h3><p>${safe.message}</p></div>`,
+      html: `<div style="font-family:Arial,sans-serif;color:#1e293b;line-height:1.55"><h2 style="color:#1d4ed8">New ResolveUS consultation request</h2><p>Submitted through resolve-us.com.</p><table cellpadding="6"><tr><td><strong>Name</strong></td><td>${safe.name}</td></tr><tr><td><strong>Email</strong></td><td>${safe.email}</td></tr><tr><td><strong>Phone</strong></td><td>${safe.phone}</td></tr><tr><td><strong>Category</strong></td><td>${safe.category}</td></tr><tr><td><strong>Sub-category</strong></td><td>${safe.subCategory}</td></tr></table><h3>Message</h3><p>${safe.message}</p></div>`,
     });
 
     try {
       await transporter.sendMail({
       from: brandFrom,
       to: email,
-      subject: "We received your Resolve US consultation request",
-      text: `Hello ${name},\n\nWe received your consultation request. Resolve US provides general consumer guidance and consultation. Our support team will review your message.\n\nCategory: ${category}\n\nThank you,\nResolve US`,
-      html: `<div style="font-family:Arial,sans-serif;color:#1e293b;line-height:1.55"><h2 style="color:#1d4ed8">We received your request</h2><p>Hello ${safe.name},</p><p>Thank you for contacting Resolve US. We provide general consumer guidance and consultation.</p><p><strong>Category:</strong> ${safe.category}</p><p>Our customer-support team will review your message.</p><p>Thank you,<br /><strong>Resolve US</strong></p></div>`,
+      subject: "We received your ResolveUS consultation request",
+      text: `Hello ${name},\n\nWe received your consultation request. ResolveUS provides general consumer guidance and consultation. Our support team will review your message.\n\nCategory: ${category}\n\nThank you,\nResolveUS`,
+      html: `<div style="font-family:Arial,sans-serif;color:#1e293b;line-height:1.55"><h2 style="color:#1d4ed8">We received your request</h2><p>Hello ${safe.name},</p><p>Thank you for contacting ResolveUS. We provide general consumer guidance and consultation.</p><p><strong>Category:</strong> ${safe.category}</p><p>Our customer-support team will review your message.</p><p>Thank you,<br /><strong>ResolveUS</strong></p></div>`,
     });
     } catch {
       console.error("Contact confirmation email failed.");

@@ -3,7 +3,7 @@ import { Check } from "lucide-react";
 import { plans } from "@/lib/pricing";
 
 /**
- * Informational pricing only. Resolve US does not accept or record payments
+ * Informational pricing only. ResolveUS does not accept or record payments
  * through the website; all plan enquiries go through the consultation form.
  */
 export default function PricingCards() {

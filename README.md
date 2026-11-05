@@ -1,8 +1,8 @@
-# Resolve US
+# ResolveUS
 
 Everyday Questions. Clear Solutions.
 
-Consumer-facing consultation brand. Primary website: https://resolve-us.com. Legal operator: A V TRADE CORPORATION.
+Consumer-facing consultation brand. Primary website: https://resolve-us.com. Legal operator: A V Food Factory.
 
 See [migration audit, validation and launch/rollback checklist](docs/resolve-us-migration.md) for Issue #1 and required external dashboard checks.
 

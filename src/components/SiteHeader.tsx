@@ -29,8 +29,8 @@ export default function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 text-[#0B2348] shadow-sm shadow-slate-900/5 backdrop-blur">
       <div className="mx-auto flex min-h-[72px] max-w-[1440px] items-center justify-between gap-4 px-4 sm:px-6 xl:px-10">
-        <Link href="/" className="shrink-0 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0755D9]" aria-label="Resolve US home">
-          <Image src="/images/resolve-us-logo.svg" alt="Resolve US" width={280} height={56} priority className="h-auto w-[194px] sm:w-[230px]" />
+        <Link href="/" className="shrink-0 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0755D9]" aria-label="ResolveUS home">
+          <Image src="/images/resolve-us-logo.svg" alt="ResolveUS" width={280} height={56} priority className="h-auto w-[194px] sm:w-[230px]" />
         </Link>
 
         <nav className="hidden items-center gap-5 min-[1366px]:flex" aria-label="Primary navigation">

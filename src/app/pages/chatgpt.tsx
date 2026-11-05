@@ -35,7 +35,7 @@ export default function ChatWidget() {
         window.QuickSquadChat.init({
           endpoint:
             "https://chatgpt-widget-test-production.up.railway.app/quicksquad-ai",
-          title: "Resolve US",
+          title: "ResolveUS",
           subtitle: "AI Assistant",
           brand: { primary: "#0ea5e9" },
           quickPrompts: [

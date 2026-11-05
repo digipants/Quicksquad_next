@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Refund Policy",
-  description: "How to request an eligible Resolve US refund by email and when it will be issued.",
+  description: "How to request an eligible ResolveUS refund by email and when it will be issued.",
   alternates: { canonical: "/refund-policy" },
 };
 
@@ -11,9 +11,9 @@ export default function RefundPolicyPage() {
   return (
     <main className="bg-slate-50 px-6 py-16 text-slate-800">
       <article className="mx-auto max-w-4xl rounded-2xl bg-white p-7 shadow-sm ring-1 ring-slate-200 sm:p-12">
-        <p className="text-sm font-bold uppercase tracking-[.16em] text-blue-700">Resolve US legal</p>
+        <p className="text-sm font-bold uppercase tracking-[.16em] text-blue-700">ResolveUS legal</p>
         <h1 className="mt-4 text-4xl font-bold text-slate-950">Refund Policy</h1>
-        <p className="mt-5 text-lg leading-8">Resolve US is a consumer-facing brand owned and operated by A V TRADE CORPORATION. This policy explains how we review refund requests for consultation services and plans.</p>
+        <p className="mt-5 text-lg leading-8">ResolveUS is a consumer-facing brand operated by A V Food Factory. This policy explains how we review refund requests for consultation services and plans.</p>
         <div className="mt-10 space-y-8 leading-7">
           <section>
             <h2 className="text-xl font-bold text-slate-900">1. How to request a refund</h2>
@@ -29,7 +29,7 @@ export default function RefundPolicyPage() {
           </section>
           <section>
             <h2 className="text-xl font-bold text-slate-900">4. No on-site payment collection</h2>
-            <p className="mt-3">Resolve US does not accept payments, collect card details, or record payment transactions through this website. If you paid through a separately agreed payment method, contact the support email above so our team can review the relevant external payment documentation.</p>
+            <p className="mt-3">ResolveUS does not accept payments, collect card details, or record payment transactions through this website. If you paid through a separately agreed payment method, contact the support email above so our team can review the relevant external payment documentation.</p>
           </section>
           <section>
             <h2 className="text-xl font-bold text-slate-900">5. Cancellation and consumer rights</h2>

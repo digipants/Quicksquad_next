@@ -27,9 +27,9 @@ export async function POST(req: Request) {
 
     // ================= ADMIN EMAIL =================
 const adminMail = {
-  from: `"Resolve US" <${process.env.EMAIL_USER}>`,
+  from: `"ResolveUS" <${process.env.EMAIL_USER}>`,
   to: "devs@digipants.com",
-  subject: "New Subscriber – Resolve US",
+  subject: "New Subscriber – ResolveUS",
   html: `
   <div style="background:#eaf1ff;padding:40px;font-family:Segoe UI,sans-serif">
     <div style="max-width:650px;margin:auto;background:white;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.12)">
@@ -37,13 +37,13 @@ const adminMail = {
       <div style="background:#1e40af;padding:30px;text-align:center;color:white">
         <h1 style="margin:0;font-size:28px;">🚀 New Subscriber</h1>
         <p style="margin-top:10px;font-size:16px;opacity:0.9">
-          Someone just subscribed to Resolve US
+          Someone just subscribed to ResolveUS
         </p>
       </div>
 
       <div style="padding:40px;">
         <p style="font-size:18px;margin-bottom:25px;">
-          A new user has joined your Resolve US mailing list:
+          A new user has joined your ResolveUS mailing list:
         </p>
 
         <div style="background:#f1f5ff;border-radius:12px;padding:25px;text-align:center">
@@ -61,7 +61,7 @@ const adminMail = {
       </div>
 
       <div style="background:#f8fafc;padding:18px;text-align:center;font-size:13px;color:#64748b">
-        Resolve US © ${new Date().getFullYear()} • resolve-us.com
+        ResolveUS © ${new Date().getFullYear()} • resolve-us.com
       </div>
     </div>
   </div>
@@ -71,17 +71,17 @@ const adminMail = {
 
     // ================= USER EMAIL =================
 const userMail = {
-  from: `"Resolve US" <${process.env.EMAIL_USER}>`,
+  from: `"ResolveUS" <${process.env.EMAIL_USER}>`,
   to: email,
-  subject: "🎉 Welcome to Resolve US",
+  subject: "🎉 Welcome to ResolveUS",
   html: `
   <div style="background:#eaf1ff;padding:40px;font-family:Segoe UI,sans-serif">
     <div style="max-width:650px;margin:auto;background:white;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.12)">
 
       <div style="background:#2563eb;padding:30px;text-align:center;color:white">
-        <h1 style="margin:0;font-size:28px;">Welcome to Resolve US 🚀</h1>
+        <h1 style="margin:0;font-size:28px;">Welcome to ResolveUS 🚀</h1>
         <p style="margin-top:10px;font-size:16px;opacity:0.9">
-          You&apos;re officially part of our Resolve US community
+          You&apos;re officially part of our ResolveUS community
         </p>
       </div>
 
@@ -91,7 +91,7 @@ const userMail = {
         </p>
 
         <p style="font-size:18px;margin-top:15px;line-height:1.6;">
-          Thank you for subscribing to <strong>Resolve US</strong>!
+          Thank you for subscribing to <strong>ResolveUS</strong>!
           You’ll now receive practical guidance, useful updates,
           and exclusive offers directly in your inbox.
         </p>
@@ -103,7 +103,7 @@ const userMail = {
           <ul style="margin-top:15px;font-size:16px;color:#334155">
             <li>📘 Clear consultation insights</li>
             <li>💡 Practical everyday guidance</li>
-            <li>🎁 Special Resolve US deals</li>
+            <li>🎁 Special ResolveUS deals</li>
           </ul>
         </div>
 
@@ -113,7 +113,7 @@ const userMail = {
         </p>
 
         <p style="margin-top:30px;font-size:16px;">
-          — Team <strong>Resolve US</strong> 💙
+          — Team <strong>ResolveUS</strong> 💙
         </p>
       </div>
 

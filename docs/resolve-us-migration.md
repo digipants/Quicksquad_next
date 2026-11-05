@@ -1,18 +1,18 @@
-# Resolve US migration — Issue #1
+# ResolveUS migration — Issue #1
 
 ## Audit and scope
 
 Baseline: `449fa3794255e2084e616dad3f291d1f019f7592`.
-Resolve US is a consumer-facing brand owned and operated by **A V TRADE CORPORATION**, not a separately registered company or licensed professional service.
+ResolveUS is a consumer-facing brand operated by **A V Food Factory**, not a separately registered company or licensed professional service.
 
 | Area | Finding and implementation |
 | --- | --- |
 | Public UI | Shared navigation/footer cover default, US and AU variants. Updated homepage, services, about, pricing, contact, disclosures and legal pages without changing categories or workflows. Homepage message: “Everyday Questions. Clear Solutions.” |
-| Assets | Visually inspected image contact sheet. Replaced logo, favicon and screenshot-style OG artwork with Resolve US assets; removed unused former logo/OG files. Other photography remains unchanged. |
+| Assets | Visually inspected image contact sheet. Replaced logo, favicon and screenshot-style OG artwork with ResolveUS assets; removed unused former logo/OG files. Other photography remains unchanged. |
 | SEO | Primary origin is `https://resolve-us.com`, without www. Updated root metadata, OG/Twitter, organization/brand/service/FAQ/breadcrumb JSON-LD, robots and sitemap. Added page-specific canonicals for client-rendered pages and blog detail routes. Added existing services/legal/help pages to sitemap. No PWA manifest or service worker existed; none introduced. Removed unverified old Twitter creator handle. |
 | Email | Gmail/Nodemailer retained. Contact sender remains EMAIL_FROM or EMAIL_USER; newsletter sender remains EMAIL_USER. Only display names/templates change. Explicit CONTACT_INBOX is retained; absent it, contact notifications now go to EMAIL_USER rather than the expired-domain inbox. Newsletter admin recipient stays devs@digipants.com. Both sends are awaited; admin failures return errors, confirmation failures return an explicit partial-delivery message without inviting duplicate submissions. Subscriber fields are validated and HTML-escaped. |
 | Public email links | Expired support/sales mailto links now lead to the existing consultation form, with the existing phone number retained. No unverified replacement mailbox is advertised. |
-| AI | Active local widget uses /api/chat. Added Resolve US identity with operator attribution; preserved model, user message and quick prompts. No existing system prompt/welcome message to migrate. Legacy unused Railway widget adapter gets the new display title; protocol names/endpoints remain compatible. |
+| AI | Active local widget uses /api/chat. Added ResolveUS identity with operator attribution; preserved model, user message and quick prompts. No existing system prompt/welcome message to migrate. Legacy unused Railway widget adapter gets the new display title; protocol names/endpoints remain compatible. |
 | Auth | Admin login/logout use relative URLs and host cookies; no customer OAuth provider or hardcoded callback domain found. Preserve qs_admin and related cookie names. Admin route context types corrected to the installed Next.js Promise params contract after production build exposed a pre-existing mismatch; authorization/data logic unchanged. |
 | Payment | Existing Razorpay browser checkout has a test key, USD, amount from plan.price, and client success alert. No payment webhook, server verification, recurring subscription API or invoice integration exists here. Preserve configuration; update only merchant display name/logo. Do not treat this audit as evidence of production settlement or recurring billing readiness. |
 | Analytics | Preserve GA4 G-5HV0XZ5FSJ and Ads AW-18376694937. No explicit conversion event code found. Preserve existing Search Console verification file. |
@@ -59,7 +59,7 @@ Owner dashboard checks:
 - `node --test tests/rebrand.mjs`: six regression/integration checks, no external email/API/payment side effects. Covers invalid forms; missing SMTP configuration; escaped templates; preserved sender; both awaited sends via deferred confirmation; admin and confirmation failures; mocked AI identity/model/response; exact baseline categories/prices/features/payment settings; mocked Basic/Premium checkout and contact-only Enterprise; sitemap/robots domain.
 - `npm run build`: blocked by environment-specific Turbopack worker port binding (Operation not permitted).
 - `npm run build -- --webpack`: passed production compilation, type validation, prerender and route generation. No project build-script change needed for the local restriction.
-- Local production server: all 12 public page routes returned HTTP 200 with correct canonicals and parseable Resolve US JSON-LD; robots.txt and sitemap.xml returned 200 with new-domain URLs. Checked expired support mailto links are absent.
+- Local production server: all 12 public page routes returned HTTP 200 with correct canonicals and parseable ResolveUS JSON-LD; robots.txt and sitemap.xml returned 200 with new-domain URLs. Checked expired support mailto links are absent.
 - No original unit/integration test suite existed. Actual SMTP delivery, live AI, hosted browser checkout, Netlify preview and external tag diagnostics require deployed verification. Mocked checkout never contacts Razorpay or charges a card.
 
 ## Production launch checklist (owner; do not run during this task)
@@ -87,5 +87,5 @@ Owner dashboard checks:
 - Rebuilt the shared responsive header with Home, an accessible category menu, Pricing, How It Works, About, Contact, phone CTA and consultation CTA. The mobile menu exposes matching navigation and phone/consultation actions.
 - Rebuilt the homepage around the approved headline and exact supporting copy, category tags, CTA pair, category cards from the existing home service definitions, a short three-step explanation and prominent cards sourced from the existing plan definitions.
 - Refreshed `/pricing` with the same shared plan data and preserved Razorpay test key, amount, USD currency, handler and prefill. Basic remains $20/month, Premium $75/month, Enterprise Custom Pricing. The UI now discloses that current checkout is one-time and does not establish automatic monthly renewal; related FAQ claims about recurring subscriptions and automatic invoices were corrected.
-- Updated public phone display and `tel:` destinations to (844) 369-3312. Contact form labels now programmatically identify their fields. The consumer footer has Resolve US brand copy and a discreet legal-operator line; corporate identity remains in legal disclosures and Organization structured data as required for transparency.
+- Updated public phone display and `tel:` destinations to (844) 369-3312. Contact form labels now programmatically identify their fields. The consumer footer has ResolveUS brand copy and a discreet legal-operator line; corporate identity remains in legal disclosures and Organization structured data as required for transparency.
 - Visual inspection of the Netlify rendered preview and desktop/mobile screenshot capture are still pending because the connected browser control tool is not available in this session. The preview can still be reviewed at the PR's deploy-preview URL. Responsive classes, semantic navigation/form labels, keyboard focus styles, local routes and build output were checked in source/build validation; these do not replace visual browser verification.

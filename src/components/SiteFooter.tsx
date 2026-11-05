@@ -16,10 +16,10 @@ export default function SiteFooter() {
     <footer className="border-t border-slate-200 bg-[#F5F9FF] text-[#0B2348]">
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <Link href="/" aria-label="Resolve US home"><Image src="/images/resolve-us-logo.svg" alt="Resolve US" width={230} height={46} className="mb-5 h-auto w-48" /></Link>
+          <Link href="/" aria-label="ResolveUS home"><Image src="/images/resolve-us-logo.svg" alt="ResolveUS" width={230} height={46} className="mb-5 h-auto w-48" /></Link>
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0755D9]">AI-powered Consultation Platform</p>
           <p className="mt-4 max-w-sm text-sm leading-6 text-slate-600">
-            Practical, everyday guidance and consultation from Resolve US.
+            Practical, everyday guidance and consultation from ResolveUS.
           </p>
         </div>
         <div>
@@ -40,7 +40,7 @@ export default function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-slate-200 px-6 py-5 text-center text-xs text-slate-600">
-        © 2026 Resolve US. All Rights Reserved. <span className="mx-2">·</span> Legal operator: A V TRADE CORPORATION
+        © 2026 ResolveUS. All Rights Reserved. <span className="mx-2">·</span> Legal operator: A V Food Factory
       </div>
     </footer>
   );

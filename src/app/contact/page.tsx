@@ -155,21 +155,21 @@ export default function ContactPage() {
   };
 
   return (
-<main className="bg-linear-to-br from-blue-50 to-white px-6 py-12 md:py-16">
+<main className="bg-linear-to-br from-teal-50 to-white px-6 py-12 md:py-16">
   <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[.8fr_1.2fr]">
     <aside className="h-fit rounded-2xl bg-slate-950 p-8 text-white shadow-lg">
-      <p className="text-sm font-bold uppercase tracking-[0.16em] text-blue-300">Business transparency</p>
+      <p className="text-sm font-bold uppercase tracking-[0.16em] text-teal-300">Business transparency</p>
       <h1 className="mt-3 text-3xl font-bold">Contact ResolveUS</h1>
       <p className="mt-4 text-sm leading-6 text-slate-300">ResolveUS is a consumer-facing AI-powered consultation platform for everyday guidance and online tasks.</p>
-      <a href="tel:+18443693312" className="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-white px-4 py-3 text-center text-base font-bold text-blue-700 transition hover:bg-blue-50">Call Now: (844) 369-3312</a>
+      <a href="tel:+18443693312" className="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-white px-4 py-3 text-center text-base font-bold text-teal-700 transition hover:bg-teal-50">Call Now: (844) 369-3312</a>
       <p className="mt-5 text-sm">Legal operator: A V Food Factory.</p>
       <dl className="mt-8 space-y-5 text-sm">
-        <div><dt className="font-semibold text-blue-200">Brand Name</dt><dd className="mt-1 text-white">ResolveUS</dd></div>
-        <div><dt className="font-semibold text-blue-200">Customer Support</dt><dd className="mt-1"><a className="text-white underline" href="/contact#consultation-form">Contact our team</a></dd></div>
-        <div><dt className="font-semibold text-blue-200">Support &amp; refunds</dt><dd className="mt-1"><a className="break-all text-white underline" href="mailto:support@resolve-us.com">support@resolve-us.com</a></dd></div>
-        <div><dt className="font-semibold text-blue-200">Phone</dt><dd className="mt-1"><a className="text-white underline" href="tel:+18443693312">(844) 369-3312</a></dd></div>
-        <div><dt className="font-semibold text-blue-200">Sales</dt><dd className="mt-1"><a className="text-white underline" href="/contact#consultation-form">Contact our team</a></dd></div>
-        <div><dt className="font-semibold text-blue-200">Business Hours</dt><dd className="mt-1 text-slate-300">Customer Support availability is provided when you contact us.</dd></div>
+        <div><dt className="font-semibold text-teal-200">Brand Name</dt><dd className="mt-1 text-white">ResolveUS</dd></div>
+        <div><dt className="font-semibold text-teal-200">Customer Support</dt><dd className="mt-1"><a className="text-white underline" href="/contact#consultation-form">Contact our team</a></dd></div>
+        <div><dt className="font-semibold text-teal-200">Support &amp; refunds</dt><dd className="mt-1"><a className="break-all text-white underline" href="mailto:support@resolve-us.com">support@resolve-us.com</a></dd></div>
+        <div><dt className="font-semibold text-teal-200">Phone</dt><dd className="mt-1"><a className="text-white underline" href="tel:+18443693312">(844) 369-3312</a></dd></div>
+        <div><dt className="font-semibold text-teal-200">Sales</dt><dd className="mt-1"><a className="text-white underline" href="/contact#consultation-form">Contact our team</a></dd></div>
+        <div><dt className="font-semibold text-teal-200">Business Hours</dt><dd className="mt-1 text-slate-300">Customer Support availability is provided when you contact us.</dd></div>
       </dl>
     </aside>
       <div className="text-gray-900 bg-white shadow-lg rounded-2xl p-8 border border-gray-100">
@@ -204,7 +204,7 @@ export default function ContactPage() {
               placeholder="Enter your name"
               value={form.name}
               onChange={handleChange}
-              className="w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 px-4 py-2"
+              className="w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-500 px-4 py-2"
             />
           </div>
 
@@ -221,7 +221,7 @@ export default function ContactPage() {
               placeholder="Enter your email"
               value={form.email}
               onChange={handleChange}
-              className="w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 px-4 py-2"
+              className="w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-500 px-4 py-2"
             />
           </div>
 
@@ -238,7 +238,7 @@ export default function ContactPage() {
               placeholder="Enter your phone number"
               value={form.phone}
               onChange={handleChange}
-              className="w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 px-4 py-2"
+              className="w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-500 px-4 py-2"
             />
           </div>
           <div>
@@ -252,7 +252,7 @@ export default function ContactPage() {
               placeholder="Enter your message"
               value={form.message}
               onChange={handleChange}
-              className="w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 px-4 py-2 min-h-30"
+              className="w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-500 px-4 py-2 min-h-30"
             ></textarea>
           </div>
 
@@ -269,7 +269,7 @@ export default function ContactPage() {
                 setCategory(e.target.value);
                 setSubCategory("");
               }}
-              className="w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 px-4 py-2"
+              className="w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-500 px-4 py-2"
               required
             >
               <option value="">Select a category</option>
@@ -292,7 +292,7 @@ export default function ContactPage() {
               title="Sub-category"
                 value={subCategory}
                 onChange={(e) => setSubCategory(e.target.value)}
-                className="w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 px-4 py-2"
+                className="w-full rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-500 px-4 py-2"
                 required
               >
                 <option value="">Select a sub-category</option>
@@ -313,7 +313,7 @@ export default function ContactPage() {
   disabled={loading}
   className={`w-full py-3 px-6 rounded-lg font-semibold transition flex items-center justify-center gap-3 ${
     !loading
-      ? "bg-blue-600 hover:bg-blue-700 text-white"
+      ? "bg-teal-600 hover:bg-teal-700 text-white"
       : "bg-gray-300 text-gray-500 cursor-not-allowed"
   }`}
 >

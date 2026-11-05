@@ -2,12 +2,12 @@
   <title id="title">ResolveUS</title>
   <defs>
     <linearGradient id="mark" x1="8" y1="7" x2="57" y2="65" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#0B2348"/>
-      <stop offset="1" stop-color="#0755D9"/>
+      <stop stop-color="#091D35"/>
+      <stop offset="1" stop-color="#0C7974"/>
     </linearGradient>
   </defs>
   <path fill="url(#mark)" d="M10 9h31c11 0 19 8 19 19 0 9-5 15-12 18l14 17H44L31 47h-8v16H10V9Zm13 11v16h17c4 0 7-3 7-8s-3-8-7-8H23Z"/>
-  <path fill="#12B8B4" d="m3 42 8-8 10 10 18-21 9 7-26 30L3 42Z"/>
-  <text x="72" y="51" fill="#0B2348" font-family="Arial,Helvetica,sans-serif" font-size="40" font-weight="700" letter-spacing="-1.5">Resolve</text>
-  <text x="210" y="51" fill="#0755D9" font-family="Arial,Helvetica,sans-serif" font-size="40" font-weight="700" letter-spacing="-1.5">US</text>
+  <path fill="#21C1B1" d="m3 42 8-8 10 10 18-21 9 7-26 30L3 42Z"/>
+  <text x="72" y="51" fill="#0B2540" font-family="Arial,Helvetica,sans-serif" font-size="40" font-weight="700" letter-spacing="-1.5">Resolve</text>
+  <text x="210" y="51" fill="#0C7974" font-family="Arial,Helvetica,sans-serif" font-size="40" font-weight="700" letter-spacing="-1.5">US</text>
 </svg>

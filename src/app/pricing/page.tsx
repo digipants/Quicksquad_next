@@ -20,22 +20,22 @@ const faqs = [
 
 export default function PricingPage() {
   return (
-    <main className="min-h-screen bg-[linear-gradient(135deg,#f5f9ff,#fff_55%,#eff7ff)] px-5 py-14 text-[#0B2348] sm:px-8 md:px-10 md:py-20">
+    <main className="min-h-screen bg-[linear-gradient(135deg,#F1FAF8,#fff_55%,#E5F7F3)] px-5 py-14 text-[#0B2540] sm:px-8 md:px-10 md:py-20">
       <section className="mx-auto max-w-[1180px]">
         <div className="mx-auto mb-9 max-w-2xl text-center">
-          <span className="inline-flex rounded-full bg-blue-100 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wide text-[#0755D9]">Pricing</span>
-          <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-[#101B33] sm:text-5xl">Choose a plan that fits your needs</h1>
+          <span className="inline-flex rounded-full bg-teal-100 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wide text-[#0C7974]">Pricing</span>
+          <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-[#091D35] sm:text-5xl">Choose a plan that fits your needs</h1>
           <p className="mt-3 text-base leading-7 text-slate-600 sm:text-lg">Get consultation, step-by-step guidance and follow-up support.</p>
         </div>
         <PricingCards />
         <p className="mx-auto mt-5 max-w-3xl text-center text-xs leading-5 text-slate-500">Basic and Premium are monthly plan rates, not automatic payment subscriptions. ResolveUS does not take or record payments through this website. Contact us to confirm plan scope and any off-site payment arrangements.</p>
       </section>
       <section className="mx-auto mt-16 max-w-3xl">
-        <h2 className="text-center text-2xl font-bold text-[#101B33]">Pricing questions</h2>
+        <h2 className="text-center text-2xl font-bold text-[#091D35]">Pricing questions</h2>
         <div className="mt-6 space-y-3">
           {faqs.map(({ question, answer }) => <details key={question} className="group rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm">
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-[#0B2348] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0755D9]">{question}<ChevronDown size={18} className="shrink-0 text-[#0755D9] transition-transform group-open:rotate-180" aria-hidden="true" /></summary>
-            <p className="mt-3 pr-8 text-sm leading-6 text-slate-600">{question.includes("refund") ? <>Please read our <Link href="/refund-policy" className="font-semibold text-[#0755D9] underline">Refund Policy</Link> or <a href="mailto:support@resolve-us.com" className="font-semibold text-[#0755D9] underline">support@resolve-us.com</a>.</> : answer}</p>
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-[#0B2540] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0C7974]">{question}<ChevronDown size={18} className="shrink-0 text-[#0C7974] transition-transform group-open:rotate-180" aria-hidden="true" /></summary>
+            <p className="mt-3 pr-8 text-sm leading-6 text-slate-600">{question.includes("refund") ? <>Please read our <Link href="/refund-policy" className="font-semibold text-[#0C7974] underline">Refund Policy</Link> or <a href="mailto:support@resolve-us.com" className="font-semibold text-[#0C7974] underline">support@resolve-us.com</a>.</> : answer}</p>
           </details>)}
         </div>
       </section>

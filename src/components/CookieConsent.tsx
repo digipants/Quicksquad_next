@@ -110,7 +110,7 @@ export default function CookieConsent() {
             Essential site functionality does not need optional cookies. You can allow
             Google Analytics, or both analytics and advertising measurement. We do not
             load Google tracking tags until you opt in. Read our{" "}
-            <a className="font-semibold text-blue-700 underline" href="/privacy-policy">Privacy Policy</a>.
+            <a className="font-semibold text-teal-700 underline" href="/privacy-policy">Privacy Policy</a>.
           </p>
           <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
             <button type="button" onClick={() => select({ analytics: false, advertising: false })}
@@ -118,11 +118,11 @@ export default function CookieConsent() {
               Reject optional
             </button>
             <button type="button" onClick={() => select({ analytics: true, advertising: false })}
-              className="rounded-lg border border-blue-700 px-4 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50">
+              className="rounded-lg border border-teal-700 px-4 py-2 text-sm font-semibold text-teal-700 hover:bg-teal-50">
               Analytics only
             </button>
             <button type="button" onClick={() => select({ analytics: true, advertising: true })}
-              className="rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800">
+              className="rounded-lg bg-teal-700 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-800">
               Accept all
             </button>
             {choice && (

@@ -265,6 +265,15 @@ test('DashProtection theme and A V Food Factory are consistent site-wide', () =>
   }
 });
 
+test('ResolveUS is prominently visible in landing-page headings', () => {
+  const home = fs.readFileSync('src/app/page.tsx', 'utf8');
+  const dash = fs.readFileSync('src/app/dashprotection/page.tsx', 'utf8');
+  assert.match(home, /<h1[\\s\\S]*?<span[^>]*>ResolveUS<\\/span>/);
+  assert.match(home, /ResolveUS provides practical guidance/);
+  assert.match(dash, /<h1[\\s\\S]*?<span[^>]*>ResolveUS/);
+  assert.match(dash, /Device Care/);
+});
+
 test('new phone number and public brand presentation are consistent', () => {
   const files = ['src/components/SiteHeader.tsx', 'src/components/SiteFooter.tsx', 'src/app/contact/page.tsx', 'src/app/page.tsx', 'src/app/api/send-email/route.ts', 'src/app/layout.tsx'];
   const application = files.map(file => fs.readFileSync(file, 'utf8')).join('\n');

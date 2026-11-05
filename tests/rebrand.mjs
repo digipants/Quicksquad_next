@@ -268,10 +268,12 @@ test('DashProtection theme and A V Food Factory are consistent site-wide', () =>
 test('ResolveUS is prominently visible in landing-page headings', () => {
   const home = fs.readFileSync('src/app/page.tsx', 'utf8');
   const dash = fs.readFileSync('src/app/dashprotection/page.tsx', 'utf8');
-  assert.match(home, /<h1[\\s\\S]*?<span[^>]*>ResolveUS<\\/span>/);
-  assert.match(home, /ResolveUS provides practical guidance/);
-  assert.match(dash, /<h1[\\s\\S]*?<span[^>]*>ResolveUS/);
-  assert.match(dash, /Device Care/);
+  const homeHero = home.slice(home.indexOf('<h1'), home.indexOf('</h1>') + 5);
+  const dashHero = dash.slice(dash.indexOf('<h1'), dash.indexOf('</h1>') + 5);
+  assert.ok(homeHero.includes('>ResolveUS</span>'));
+  assert.ok(home.includes('ResolveUS provides practical guidance'));
+  assert.ok(dashHero.includes('>ResolveUS <span'));
+  assert.ok(dashHero.includes('Device Care'));
 });
 
 test('new phone number and public brand presentation are consistent', () => {

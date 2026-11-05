@@ -33,10 +33,11 @@ export default function Home() {
         <div className="mx-auto grid min-h-[540px] max-w-[1440px] items-center gap-8 px-5 py-10 sm:px-8 md:grid-cols-[.94fr_1.06fr] md:gap-4 md:px-10 md:py-12">
           <div className="relative z-10 max-w-[610px] py-3 md:py-8">
             <h1 className="text-[clamp(2.65rem,5.25vw,4.65rem)] font-extrabold leading-[1.04] tracking-[-0.045em] text-[#091D35]">
+              <span className="mb-4 block text-[clamp(1.3rem,2.5vw,1.9rem)] font-extrabold leading-tight tracking-normal text-[#0C7974]">ResolveUS</span>
               Everyday Questions.<br /><span className="text-[#0C7974]">Clear Solutions.</span>
             </h1>
             <p className="mt-5 max-w-[570px] text-lg leading-[1.55] text-slate-700 sm:text-xl">
-              Get practical guidance and consultation for your everyday needs — from digital accounts and technology to travel, financial information, shopping, careers and more.
+              ResolveUS provides practical guidance and consultation for your everyday needs — from digital accounts and technology to travel, financial information, shopping, careers and more.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <Link href="/contact#consultation-form" className="inline-flex min-h-14 items-center justify-center gap-3 rounded-2xl bg-[#0C7974] px-7 text-base font-bold text-white shadow-[0_8px_20px_rgba(12,121,116,.2)] transition hover:-translate-y-0.5 hover:bg-[#096761] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0C7974] focus-visible:ring-offset-2 sm:text-lg">Get Consultation <ArrowRight size={21} aria-hidden="true" /></Link>

@@ -35,6 +35,7 @@ export default function DashProtectionPage() {
               <ShieldCheck size={16} aria-hidden="true" /> DashProtection <span className="text-teal-100/55">/</span> by ResolveUS
             </div>
             <h1 className="mt-8 max-w-[760px] text-[clamp(3rem,6vw,5.6rem)] font-black leading-[1.02] tracking-[-.055em]">
+              <span className="mb-5 block text-[clamp(1.25rem,2.4vw,1.85rem)] font-bold leading-tight tracking-normal text-white">ResolveUS <span className="text-[#7CE5D6]">Device Care</span></span>
               Your tech.<br /><span className="bg-gradient-to-r from-[#64E3D1] to-[#9AE9F6] bg-clip-text text-transparent">Taken care of.</span>
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-8 text-slate-200 sm:text-xl">

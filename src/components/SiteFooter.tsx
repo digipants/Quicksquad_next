@@ -2,9 +2,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { PhoneCall } from "lucide-react";
 
-const categories = ["Finance", "Technology", "Travel", "Healthcare", "Government Services", "Shopping", "Career", "Digital Accounts", "Device Care"];
+const exploreLinks = [
+  { href: "/services#banking", label: "Banking" },
+  { href: "/services#technology", label: "Technology" },
+  { href: "/services#finance", label: "Finance" },
+  { href: "/services#government", label: "Government" },
+  { href: "/services#shopping", label: "Shopping" },
+  { href: "/services#travel", label: "Travel" },
+  { href: "/services#healthcare", label: "Healthcare" },
+  { href: "/services#career", label: "Career" },
+  { href: "/services#digital-accounts", label: "Digital Accounts" },
+  { href: "/dashprotection", label: "Device Care" },
+] as const;
 const supportLinks = [
-  { href: "/dashprotection", label: "DashProtection Device Care" },
   { href: "/privacy-policy", label: "Privacy Policy" },
   { href: "/terms-of-service", label: "Terms of Service" },
   { href: "/refund-policy", label: "Refund Policy" },
@@ -24,9 +34,9 @@ export default function SiteFooter() {
           </p>
         </div>
         <div>
-          <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-[#0B2540]">Business Categories</h2>
+          <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-[#0B2540]">Explore</h2>
           <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-sm text-slate-600">
-            {categories.map((category) => <li key={category}>{category}</li>)}
+            {exploreLinks.map((item) => <li key={item.href}><Link href={item.href} className="rounded-sm transition hover:text-[#0C7974] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0C7974]">{item.label}</Link></li>)}
           </ul>
         </div>
         <div>

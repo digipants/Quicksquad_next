@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 
 const navigation = [
   { href: "/", label: "Home" },
+  { href: "/dashprotection", label: "DashProtection" },
   { href: "/pricing", label: "Pricing" },
   { href: "/#how-it-works", label: "How It Works" },
   { href: "/about", label: "About" },
@@ -33,7 +34,7 @@ export default function SiteHeader() {
           <Image src="/images/resolve-us-logo.svg" alt="ResolveUS" width={280} height={56} priority className="h-auto w-[194px] sm:w-[230px]" />
         </Link>
 
-        <nav className="hidden items-center gap-5 min-[1366px]:flex" aria-label="Primary navigation">
+        <nav className="hidden items-center gap-3 min-[1366px]:flex" aria-label="Primary navigation">
           <Link href="/" aria-current={pathname === "/" ? "page" : undefined} className={`border-b-2 py-2 text-[15px] font-semibold transition-colors hover:text-[#0755D9] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0755D9] ${pathname === "/" ? "border-[#0755D9] text-[#0755D9]" : "border-transparent text-[#101B33]"}`}>Home</Link>
           <details className="group relative">
             <summary className="flex cursor-pointer list-none items-center gap-1 rounded-md py-2 text-[15px] font-semibold text-[#101B33] transition-colors hover:text-[#0755D9] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0755D9]">
@@ -53,8 +54,8 @@ export default function SiteHeader() {
           ))}
         </nav>
 
-        <div className="hidden shrink-0 items-center gap-3 lg:flex">
-          <a href="tel:+18443693312" className="inline-flex items-center gap-2 rounded-full border border-[#0755D9] px-4 py-2 text-sm font-bold text-[#0B2348] transition hover:bg-blue-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0755D9]">
+        <div className="hidden shrink-0 items-center gap-2 lg:flex">
+          <a href="tel:+18443693312" className="hidden 2xl:inline-flex items-center gap-2 rounded-full border border-[#0755D9] px-4 py-2 text-sm font-bold text-[#0B2348] transition hover:bg-blue-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0755D9]">
             <PhoneCall size={17} aria-hidden="true" /> (844) 369-3312
           </a>
           <Link href="/contact#consultation-form" className="rounded-full bg-[#0755D9] px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-[#0647B7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0755D9] focus-visible:ring-offset-2">Get Consultation</Link>

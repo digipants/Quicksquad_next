@@ -2,8 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { PhoneCall } from "lucide-react";
 
-const categories = ["Finance", "Technology", "Travel", "Healthcare", "Government Services", "Shopping", "Career", "Digital Accounts"];
+const categories = ["Finance", "Technology", "Travel", "Healthcare", "Government Services", "Shopping", "Career", "Digital Accounts", "Device Care"];
 const supportLinks = [
+  { href: "/dashprotection", label: "DashProtection Device Care" },
   { href: "/privacy-policy", label: "Privacy Policy" },
   { href: "/terms-of-service", label: "Terms of Service" },
   { href: "/refund-policy", label: "Refund Policy" },
@@ -19,7 +20,7 @@ export default function SiteFooter() {
           <Link href="/" aria-label="ResolveUS home"><Image src="/images/resolve-us-logo.svg" alt="ResolveUS" width={230} height={46} className="mb-5 h-auto w-48" /></Link>
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0755D9]">AI-powered Consultation Platform</p>
           <p className="mt-4 max-w-sm text-sm leading-6 text-slate-600">
-            Practical, everyday guidance and consultation from ResolveUS.
+            Practical everyday guidance, consultation and DashProtection device-care enquiries from ResolveUS.
           </p>
         </div>
         <div>

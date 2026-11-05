@@ -62,6 +62,26 @@ export default function Home() {
         </div>
       </section>
 
+      <section aria-labelledby="dashprotection-home-intro" className="bg-[#F2F8FA] px-5 py-12 sm:px-8 md:px-10 md:py-20">
+        <div className="relative mx-auto grid max-w-[1240px] items-center gap-8 overflow-hidden rounded-[32px] bg-[#0B2540] px-7 py-12 text-white shadow-[0_22px_65px_rgba(11,35,72,.12)] sm:px-11 lg:grid-cols-[1.1fr_.9fr] lg:px-14 lg:py-16">
+          <div className="pointer-events-none absolute -right-24 -top-32 h-96 w-96 rounded-full border-[58px] border-teal-200/10" aria-hidden="true" />
+          <div className="relative z-10">
+            <div className="inline-flex items-center gap-2 rounded-full border border-teal-200/30 bg-teal-200/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[.16em] text-teal-200"><ShieldCheck size={17} aria-hidden="true" /> Introducing DashProtection by ResolveUS</div>
+            <h2 id="dashprotection-home-intro" className="mt-6 max-w-2xl text-3xl font-black leading-tight tracking-[-.045em] sm:text-4xl lg:text-5xl">Everyday guidance. <span className="text-[#7CE5D6]">And now, dedicated device care.</span></h2>
+            <p className="mt-5 max-w-xl text-base leading-8 text-slate-200 sm:text-lg">Find service options for computers, phones, smart-home devices, cameras, appliances and car electronics—all within the ResolveUS experience.</p>
+            <Link href="/dashprotection" className="mt-7 inline-flex min-h-13 items-center gap-2 rounded-xl bg-[#7CE5D6] px-6 py-3 font-extrabold text-[#0B2540] transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B2540]">Explore DashProtection <ArrowRight size={19} aria-hidden="true" /></Link>
+          </div>
+          <div className="relative z-10 grid grid-cols-2 gap-3">
+            {[
+              { label: "Computers & tablets", Icon: Laptop },
+              { label: "Digital device care", Icon: ShieldCheck },
+              { label: "Smart home devices", Icon: Building2 },
+              { label: "Support options", Icon: UserRoundCog },
+            ].map(({ label, Icon }) => <div key={label} className="rounded-2xl border border-white/15 bg-white/[.08] p-5 text-white backdrop-blur-sm"><Icon size={27} className="text-[#7CE5D6]" aria-hidden="true" /><p className="mt-5 text-sm font-bold">{label}</p></div>)}
+          </div>
+        </div>
+      </section>
+
       <section id="categories" className="scroll-mt-24 bg-white px-5 py-16 sm:px-8 md:px-10 md:py-20">
         <div className="mx-auto max-w-[1240px]">
           <div className="mx-auto mb-10 max-w-2xl text-center">

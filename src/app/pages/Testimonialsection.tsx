@@ -57,7 +57,7 @@ export default function TestimonialsSection() {
               >
                 <div className="bg-white rounded-2xl shadow-lg p-8 md:p-10">
                   <p className="text-lg text-gray-700 italic mb-6">“{t.text}”</p>
-                  <div className="text-blue-600 font-semibold">{t.name}</div>
+                  <div className="text-teal-600 font-semibold">{t.name}</div>
                   <div className="text-gray-500 text-sm">{t.location}</div>
                 </div>
               </div>
@@ -73,7 +73,7 @@ export default function TestimonialsSection() {
               key={i}
               onClick={() => setCurrent(i)}
               className={`w-3 h-3 rounded-full transition-all ${
-                current === i ? "bg-blue-600 scale-110" : "bg-gray-400"
+                current === i ? "bg-teal-600 scale-110" : "bg-gray-400"
               }`}
             />
           ))}

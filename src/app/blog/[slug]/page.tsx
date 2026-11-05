@@ -147,13 +147,13 @@ export default function BlogDetailPageClient() {
         dangerouslySetInnerHTML={{ __html: blog.content }}
       />
 
-      <div className="mt-12 bg-gradient-to-r from-blue-50 to-white border border-gray-100 rounded-xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="mt-12 bg-gradient-to-r from-teal-50 to-white border border-gray-100 rounded-xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
           <h3 className="text-lg font-semibold text-black">Found this helpful?</h3>
           <p className="text-gray-500">If you need help, our experts are available 24/7.</p>
         </div>
         <div>
-          <Link href="/contact" className="inline-block bg-blue-600 text-white px-4 py-2 rounded-md shadow hover:bg-blue-700">
+          <Link href="/contact" className="inline-block bg-teal-600 text-white px-4 py-2 rounded-md shadow hover:bg-teal-700">
             Contact Support
           </Link>
         </div>

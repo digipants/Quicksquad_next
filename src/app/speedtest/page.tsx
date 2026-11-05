@@ -11,7 +11,7 @@ export default function SpeedTest() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <h1 className="text-4xl md:text-5xl font-bold text-blue-700">
+        <h1 className="text-4xl md:text-5xl font-bold text-teal-700">
           Internet Speed Test
         </h1>
         <p className="mt-4 text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">

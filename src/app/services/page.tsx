@@ -35,11 +35,11 @@ const services = [
 export default function ServicesPage() {
   return (
     <main className="bg-slate-50">
-      <section className="bg-linear-to-br from-blue-800 via-blue-700 to-cyan-600 px-6 py-20 text-white">
+      <section className="bg-linear-to-br from-teal-800 via-teal-700 to-teal-600 px-6 py-20 text-white">
         <div className="mx-auto max-w-4xl text-center">
-          <p className="text-sm font-bold uppercase tracking-[0.18em] text-blue-100">ResolveUS services</p>
+          <p className="text-sm font-bold uppercase tracking-[0.18em] text-teal-100">ResolveUS services</p>
           <h1 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">Everyday guidance, all in one place</h1>
-          <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-blue-50">ResolveUS helps consumers research questions, navigate online tasks, and move forward with practical general consultation.</p>
+          <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-teal-50">ResolveUS helps consumers research questions, navigate online tasks, and move forward with practical general consultation.</p>
         </div>
       </section>
 
@@ -50,12 +50,12 @@ export default function ServicesPage() {
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map(({ title, icon: Icon, description, examples }) => (
-            <article key={title} id={title.toLowerCase().replaceAll(" ", "-")} className="group flex min-h-72 flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg">
-              <div className="grid h-12 w-12 place-items-center rounded-xl bg-blue-50 text-blue-700"><Icon size={25} aria-hidden="true" /></div>
+            <article key={title} id={title.toLowerCase().replaceAll(" ", "-")} className="group flex min-h-72 flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-teal-200 hover:shadow-lg">
+              <div className="grid h-12 w-12 place-items-center rounded-xl bg-teal-50 text-teal-700"><Icon size={25} aria-hidden="true" /></div>
               <h3 className="mt-5 text-xl font-bold text-slate-900">{title}</h3>
               <p className="mt-3 text-sm leading-6 text-slate-600">{description}</p>
               <p className="mt-3 text-xs font-medium leading-5 text-slate-500">{examples}</p>
-              <Link href={`/contact?category=${encodeURIComponent(title)}`} className="mt-auto pt-6 text-sm font-bold text-blue-700 transition group-hover:text-blue-900">Start consultation <span aria-hidden="true">→</span></Link>
+              <Link href={`/contact?category=${encodeURIComponent(title)}`} className="mt-auto pt-6 text-sm font-bold text-teal-700 transition group-hover:text-teal-900">Start consultation <span aria-hidden="true">→</span></Link>
             </article>
           ))}
         </div>

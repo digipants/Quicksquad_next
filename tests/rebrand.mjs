@@ -217,6 +217,54 @@ test('DashProtection integration retains device topics, separate plans and a saf
   assert.match(dashPage, /No payment or card details are collected here/);
 });
 
+test('DashProtection theme and A V Food Factory are consistent site-wide', () => {
+  const css = fs.readFileSync('src/app/globals.css', 'utf8');
+  assert.match(css, /--brand-navy: #091D35/);
+  assert.match(css, /--brand-primary: #0C7974/);
+  assert.match(css, /--brand-mint: #7CE5D6/);
+  const logo = fs.readFileSync('public/images/resolve-us-logo.svg', 'utf8');
+  assert.match(logo, /#0C7974/);
+  const icon = fs.readFileSync('src/app/icon.svg', 'utf8');
+  assert.match(icon, /#0B2540/);
+  const layout = fs.readFileSync('src/app/layout.tsx', 'utf8');
+  assert.match(layout, /themeColor: "#091D35"/);
+  assert.match(layout, /legalName: "A V Food Factory"/);
+  for (const file of [
+    'src/app/page.tsx',
+    'src/app/about/page.tsx',
+    'src/app/services/page.tsx',
+    'src/app/pricing/page.tsx',
+    'src/app/contact/page.tsx',
+    'src/app/blog/page.tsx',
+    'src/app/blog/[slug]/page.tsx',
+    'src/app/faq-page/page.tsx',
+    'src/app/speedtest/page.tsx',
+    'src/app/dashprotection/page.tsx',
+    'src/components/SiteHeader.tsx',
+    'src/components/SiteFooter.tsx',
+    'src/components/SiteDisclosure.tsx',
+    'src/components/PricingCards.tsx',
+    'src/components/CookieConsent.tsx',
+    'src/components/ChatWidget.tsx',
+  ]) {
+    const source = fs.readFileSync(file, 'utf8');
+    assert.doesNotMatch(source, /#0755D9|#2585FF|#0B2348|#0647B7/i, file);
+    assert.doesNotMatch(source, /(?:blue|cyan)-(?:50|100|200|300|400|500|600|700|800|900)\b/, file);
+  }
+  for (const file of [
+    'src/app/contact/page.tsx',
+    'src/app/privacy-policy/page.tsx',
+    'src/app/refund-policy/page.tsx',
+    'src/app/terms-of-service/page.tsx',
+    'src/app/disclaimer/page.tsx',
+    'src/components/SiteFooter.tsx',
+  ]) {
+    const source = fs.readFileSync(file, 'utf8');
+    assert.match(source, /A V Food Factory/, file);
+    assert.doesNotMatch(source, /A V TRADE CORPORATION/, file);
+  }
+});
+
 test('new phone number and public brand presentation are consistent', () => {
   const files = ['src/components/SiteHeader.tsx', 'src/components/SiteFooter.tsx', 'src/app/contact/page.tsx', 'src/app/page.tsx', 'src/app/api/send-email/route.ts', 'src/app/layout.tsx'];
   const application = files.map(file => fs.readFileSync(file, 'utf8')).join('\n');

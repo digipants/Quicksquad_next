@@ -11,13 +11,13 @@ export default function RefundPolicyPage() {
   return (
     <main className="bg-slate-50 px-6 py-16 text-slate-800">
       <article className="mx-auto max-w-4xl rounded-2xl bg-white p-7 shadow-sm ring-1 ring-slate-200 sm:p-12">
-        <p className="text-sm font-bold uppercase tracking-[.16em] text-blue-700">ResolveUS legal</p>
+        <p className="text-sm font-bold uppercase tracking-[.16em] text-teal-700">ResolveUS legal</p>
         <h1 className="mt-4 text-4xl font-bold text-slate-950">Refund Policy</h1>
         <p className="mt-5 text-lg leading-8">ResolveUS is a consumer-facing brand operated by A V Food Factory. This policy explains how we review refund requests for consultation services, DashProtection device-care services and plans.</p>
         <div className="mt-10 space-y-8 leading-7">
           <section>
             <h2 className="text-xl font-bold text-slate-900">1. How to request a refund</h2>
-            <p className="mt-3">Email <a className="font-semibold text-blue-700 underline" href="mailto:support@resolve-us.com">support@resolve-us.com</a> with your name, the email used for the service, service or plan name, payment date, any relevant invoice or transaction reference, and why you are requesting a refund. Please do not email card numbers, passwords, or other sensitive financial credentials.</p>
+            <p className="mt-3">Email <a className="font-semibold text-teal-700 underline" href="mailto:support@resolve-us.com">support@resolve-us.com</a> with your name, the email used for the service, service or plan name, payment date, any relevant invoice or transaction reference, and why you are requesting a refund. Please do not email card numbers, passwords, or other sensitive financial credentials.</p>
           </section>
           <section>
             <h2 className="text-xl font-bold text-slate-900">2. When a refund may be eligible</h2>
@@ -33,10 +33,10 @@ export default function RefundPolicyPage() {
           </section>
           <section>
             <h2 className="text-xl font-bold text-slate-900">5. Cancellation and consumer rights</h2>
-            <p className="mt-3">To cancel an agreed ongoing service arrangement, contact <a href="mailto:support@resolve-us.com" className="font-semibold text-blue-700 underline">support@resolve-us.com</a>. Cancellation and refund eligibility depend on the confirmed arrangement and the service already delivered. Nothing in this policy limits rights that cannot be excluded under applicable consumer law.</p>
+            <p className="mt-3">To cancel an agreed ongoing service arrangement, contact <a href="mailto:support@resolve-us.com" className="font-semibold text-teal-700 underline">support@resolve-us.com</a>. Cancellation and refund eligibility depend on the confirmed arrangement and the service already delivered. Nothing in this policy limits rights that cannot be excluded under applicable consumer law.</p>
           </section>
         </div>
-        <p className="mt-10 border-t border-slate-200 pt-6 text-sm">Read our <Link className="font-semibold text-blue-700 underline" href="/terms-of-service">Terms of Service</Link> and <Link className="font-semibold text-blue-700 underline" href="/privacy-policy">Privacy Policy</Link>.</p>
+        <p className="mt-10 border-t border-slate-200 pt-6 text-sm">Read our <Link className="font-semibold text-teal-700 underline" href="/terms-of-service">Terms of Service</Link> and <Link className="font-semibold text-teal-700 underline" href="/privacy-policy">Privacy Policy</Link>.</p>
         <p className="mt-6 text-sm text-slate-500">Last updated: November 3, 2026</p>
       </article>
     </main>

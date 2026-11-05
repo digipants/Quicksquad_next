@@ -1,8 +1,14 @@
 @import "tailwindcss";
 
 :root {
+  --brand-navy: #091D35;
+  --brand-ink: #0B2540;
+  --brand-primary: #0C7974;
+  --brand-primary-hover: #096761;
+  --brand-mint: #7CE5D6;
+  --brand-soft: #F1FAF8;
   --background: #ffffff;
-  --foreground: #0B2348;
+  --foreground: var(--brand-ink);
 }
 
 @theme inline {

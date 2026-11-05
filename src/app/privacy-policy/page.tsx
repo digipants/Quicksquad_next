@@ -23,12 +23,12 @@ export default function PrivacyPolicy() {
   return (
     <main className="bg-slate-50 px-6 py-16 text-slate-800">
       <article className="mx-auto max-w-4xl rounded-2xl bg-white p-7 shadow-sm ring-1 ring-slate-200 sm:p-12">
-        <p className="text-sm font-bold uppercase tracking-[.16em] text-blue-700">ResolveUS legal</p>
+        <p className="text-sm font-bold uppercase tracking-[.16em] text-teal-700">ResolveUS legal</p>
         <h1 className="mt-4 text-4xl font-bold text-slate-950">Privacy Policy</h1>
         <div className="mt-10 space-y-8">{sections.map(([title, description], index) => (
           <section key={title}><h2 className="text-xl font-bold text-slate-900">{index + 1}. {title}</h2><p className="mt-3 leading-7">{description}</p></section>
         ))}</div>
-        <p className="mt-10 border-t border-slate-200 pt-6 leading-7">Contact our team about privacy at <a href="mailto:support@resolve-us.com" className="font-semibold text-blue-700 underline">support@resolve-us.com</a>. See also the <Link href="/terms-of-service" className="font-semibold text-blue-700 underline">Terms of Service</Link> and <Link href="/disclaimer" className="font-semibold text-blue-700 underline">Disclaimer</Link>.</p>
+        <p className="mt-10 border-t border-slate-200 pt-6 leading-7">Contact our team about privacy at <a href="mailto:support@resolve-us.com" className="font-semibold text-teal-700 underline">support@resolve-us.com</a>. See also the <Link href="/terms-of-service" className="font-semibold text-teal-700 underline">Terms of Service</Link> and <Link href="/disclaimer" className="font-semibold text-teal-700 underline">Disclaimer</Link>.</p>
         <p className="mt-6 text-sm text-slate-500">Last updated: November 3, 2026</p>
       </article>
     </main>

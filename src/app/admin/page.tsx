@@ -339,7 +339,7 @@ export default function AdminPage() {
         <header className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-semibold">Admin — Blog Manager</h1>
           <div className="flex items-center gap-3">
-            <Link href="/" className="text-sm text-blue-600 hover:underline">View site</Link>
+            <Link href="/" className="text-sm text-teal-600 hover:underline">View site</Link>
             {token ? (
               <button onClick={logout} className="px-3 py-1 rounded bg-gray-200">Logout</button>
             ) : null}
@@ -357,7 +357,7 @@ export default function AdminPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 className="flex-1 border rounded px-3 py-2"
               />
-              <button className="px-4 py-2 bg-blue-600 text-white rounded">Login</button>
+              <button className="px-4 py-2 bg-teal-600 text-white rounded">Login</button>
             </div>
             {message && <p className="mt-2 text-sm text-red-600">{message}</p>}
           </form>
@@ -428,7 +428,7 @@ export default function AdminPage() {
             />
 
             <div className="flex items-center gap-3">
-              <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded" disabled={!token || loading}>
+              <button type="submit" className="px-4 py-2 bg-teal-600 text-white rounded" disabled={!token || loading}>
                 {loading ? "Saving..." : editing ? "Update blog" : "Create blog"}
               </button>
               {editing && (
@@ -450,7 +450,7 @@ export default function AdminPage() {
             <h3 className="font-medium">Existing blogs</h3>
             <div>
               <button onClick={() => fetchBlogs(token)} className="px-3 py-1 bg-gray-100 rounded mr-2">Refresh</button>
-              <Link href="/blog" className="px-3 py-1 text-blue-600">Open blog list</Link>
+              <Link href="/blog" className="px-3 py-1 text-teal-600">Open blog list</Link>
             </div>
           </div>
 
@@ -475,7 +475,7 @@ export default function AdminPage() {
                     <div className="flex items-center gap-2">
                       <button onClick={() => startEdit(b)} className="px-2 py-1 text-sm bg-yellow-400 rounded">Edit</button>
                       <button onClick={() => handleDelete(b._id)} className="px-2 py-1 text-sm bg-red-400 rounded">Delete</button>
-                      <Link href={`/blog/${b.slug}`} className="px-2 py-1 text-sm bg-blue-400 rounded">View</Link>
+                      <Link href={`/blog/${b.slug}`} className="px-2 py-1 text-sm bg-teal-400 rounded">View</Link>
                     </div>
                   </div>
                 </div>

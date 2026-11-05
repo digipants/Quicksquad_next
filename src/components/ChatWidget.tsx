@@ -73,7 +73,7 @@ export default function ChatWidget() {
       <button
         onClick={toggleWidget}
         className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center
-                   rounded-full bg-blue-500 text-white shadow-2xl hover:bg-blue-700
+                   rounded-full bg-teal-500 text-white shadow-2xl hover:bg-teal-700
                    transition focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
         aria-label="Open chat"
       >
@@ -89,7 +89,7 @@ export default function ChatWidget() {
           aria-label="ResolveUS AI Assistant"
         >
           {/* Header */}
-          <div className="p-4 font-semibold text-white bg-blue-500 flex justify-between items-center">
+          <div className="p-4 font-semibold text-white bg-teal-500 flex justify-between items-center">
             <span>ResolveUS AI Assistant</span>
             <button
               onClick={toggleWidget}
@@ -123,7 +123,7 @@ export default function ChatWidget() {
                 key={idx}
                 className={`px-3 py-2 rounded-lg max-w-[80%] text-[0.95rem] leading-relaxed shadow-sm ${
                   msg.role === "user"
-                    ? "ml-auto bg-blue-500 text-white"
+                    ? "ml-auto bg-teal-500 text-white"
                     : "bg-gray-100 text-gray-900"
                 }`}
               >
@@ -145,13 +145,13 @@ export default function ChatWidget() {
               className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-[0.95rem]
                          bg-white text-gray-900 shadow-inner
                          placeholder:text-gray-700 placeholder:opacity-100 placeholder:font-medium
-                         focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent"
+                         focus:outline-none focus:ring-2 focus:ring-teal-700 focus:border-transparent"
               aria-label="Type your message"
             />
             <button
               onClick={() => sendMessage()}
-              className="bg-blue-500 text-white px-4 py-2 rounded-md font-medium
-                         shadow hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+              className="bg-teal-500 text-white px-4 py-2 rounded-md font-medium
+                         shadow hover:bg-teal-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-600"
             >
               Send
             </button>

@@ -52,7 +52,7 @@ export async function POST(req: Request) {
       replyTo: email,
       subject: `New ${requestBrand} consultation request from ${name}`,
       text: `New ${requestBrand} request\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nCategory: ${category}\nSub-category: ${subCategory}\n\nMessage:\n${message}`,
-      html: `<div style="font-family:Arial,sans-serif;color:#1e293b;line-height:1.55"><h2 style="color:#1d4ed8">New ${requestBrand} request</h2><p>Submitted through resolve-us.com.</p><table cellpadding="6"><tr><td><strong>Name</strong></td><td>${safe.name}</td></tr><tr><td><strong>Email</strong></td><td>${safe.email}</td></tr><tr><td><strong>Phone</strong></td><td>${safe.phone}</td></tr><tr><td><strong>Category</strong></td><td>${safe.category}</td></tr><tr><td><strong>Sub-category</strong></td><td>${safe.subCategory}</td></tr></table><h3>Message</h3><p>${safe.message}</p></div>`,
+      html: `<div style="font-family:Arial,sans-serif;color:#1e293b;line-height:1.55"><h2 style="color:#0C7974">New ${requestBrand} request</h2><p>Submitted through resolve-us.com.</p><table cellpadding="6"><tr><td><strong>Name</strong></td><td>${safe.name}</td></tr><tr><td><strong>Email</strong></td><td>${safe.email}</td></tr><tr><td><strong>Phone</strong></td><td>${safe.phone}</td></tr><tr><td><strong>Category</strong></td><td>${safe.category}</td></tr><tr><td><strong>Sub-category</strong></td><td>${safe.subCategory}</td></tr></table><h3>Message</h3><p>${safe.message}</p></div>`,
     });
 
     try {
@@ -61,7 +61,7 @@ export async function POST(req: Request) {
       to: email,
       subject: `We received your ${requestBrand} request`,
       text: `Hello ${name},\n\nWe received your ${isDeviceCare ? "DashProtection device-care enquiry" : "consultation request"}. ${isDeviceCare ? "Our team will review available service options and contact you. No appointment, repair or price is confirmed by this acknowledgement." : "ResolveUS provides general consumer guidance and consultation."}\n\nCategory: ${category}\n\nThank you,\nResolveUS`,
-      html: `<div style="font-family:Arial,sans-serif;color:#1e293b;line-height:1.55"><h2 style="color:#1d4ed8">We received your request</h2><p>Hello ${safe.name},</p><p>${isDeviceCare ? "Thank you for contacting DashProtection by ResolveUS about device care. We will assess available service options; this message does not confirm an appointment or repair." : "Thank you for contacting ResolveUS. We provide general consumer guidance and consultation."}</p><p><strong>Category:</strong> ${safe.category}</p><p>Our customer-support team will review your message.</p><p>Thank you,<br /><strong>ResolveUS</strong></p></div>`,
+      html: `<div style="font-family:Arial,sans-serif;color:#1e293b;line-height:1.55"><h2 style="color:#0C7974">We received your request</h2><p>Hello ${safe.name},</p><p>${isDeviceCare ? "Thank you for contacting DashProtection by ResolveUS about device care. We will assess available service options; this message does not confirm an appointment or repair." : "Thank you for contacting ResolveUS. We provide general consumer guidance and consultation."}</p><p><strong>Category:</strong> ${safe.category}</p><p>Our customer-support team will review your message.</p><p>Thank you,<br /><strong>ResolveUS</strong></p></div>`,
     });
     } catch {
       console.error("Contact confirmation email failed.");

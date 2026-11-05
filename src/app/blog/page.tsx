@@ -61,13 +61,13 @@ export default function BlogPage() {
           placeholder="Search blog..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full sm:w-64 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+          className="w-full sm:w-64 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-500"
         />
 
         {/* Category Filter */}
         <select
         title="Category"
-          className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+          className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-500"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         >
@@ -79,7 +79,7 @@ export default function BlogPage() {
         {/* Sort Filter */}
         <select
         title="Filter"
-          className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+          className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-500"
           value={sort}
           onChange={(e) => setSort(e.target.value)}
         >
@@ -94,7 +94,7 @@ export default function BlogPage() {
             setCategory("All");
             setSort("latest");
           }}
-          className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-blue-500 hover:text-white transition"
+          className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-teal-500 hover:text-white transition"
         >
           Reset Filters
         </button>
@@ -127,11 +127,11 @@ export default function BlogPage() {
               <div className="p-4">
                 <p className="text-xs text-gray-500 mb-1">{post.date}</p>
 
-                <h2 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-teal-600 transition">
                   {post.title}
                 </h2>
 
-                <span className="text-blue-600 text-sm font-medium group-hover:underline">
+                <span className="text-teal-600 text-sm font-medium group-hover:underline">
                   Read More →
                 </span>
               </div>
@@ -150,7 +150,7 @@ export default function BlogPage() {
   >
     {/* Spinner */}
     <motion.div
-      className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full"
+      className="w-16 h-16 border-4 border-teal-500 border-t-transparent rounded-full"
       animate={{ rotate: 360 }}
       transition={{
         repeat: Infinity,

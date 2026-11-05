@@ -54,7 +54,7 @@ export default function AdminLoginPage() {
           <div className="flex items-center justify-between">
             <button
               type="submit"
-              className="px-4 py-2 bg-blue-600 text-white rounded"
+              className="px-4 py-2 bg-teal-600 text-white rounded"
               disabled={loading}
             >
               {loading ? "Signing in…" : "Sign in"}

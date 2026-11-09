@@ -43,6 +43,11 @@ export default function Home() {
               <Link href="/contact#consultation-form" className="inline-flex min-h-14 items-center justify-center gap-3 rounded-2xl bg-[#0C7974] px-7 text-base font-bold text-white shadow-[0_8px_20px_rgba(12,121,116,.2)] transition hover:-translate-y-0.5 hover:bg-[#096761] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0C7974] focus-visible:ring-offset-2 sm:text-lg">Get Consultation <ArrowRight size={21} aria-hidden="true" /></Link>
               <Link href="#categories" className="inline-flex min-h-14 items-center justify-center rounded-2xl border border-[#0B2540] px-7 text-base font-bold text-[#0B2540] transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0C7974] sm:text-lg">Browse Help Topics</Link>
             </div>
+            <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-slate-700">
+              <span className="font-semibold">Prefer to call?</span>
+              <a href="tel:+18332162311" className="font-bold text-[#0C7974] underline underline-offset-2 hover:text-[#096761]">+1 (833) 216-2311</a>
+              <span className="text-xs text-slate-600">International: +18332162311</span>
+            </div>
             <div className="mt-8 flex flex-wrap gap-x-7 gap-y-3 text-sm font-semibold text-slate-800 sm:gap-x-9">
               <span className="inline-flex items-center gap-2"><CheckCircle2 className="text-[#0C7974]" size={21} aria-hidden="true" /> Practical Guidance</span>
               <span className="inline-flex items-center gap-2"><ShieldCheck className="text-[#0C7974]" size={21} aria-hidden="true" /> Clear Information</span>

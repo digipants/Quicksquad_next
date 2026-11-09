@@ -125,7 +125,7 @@ export default function DashProtectionPage() {
             <p className="text-xs font-black uppercase tracking-[.2em] text-teal-700">A straightforward process</p>
             <h2 className="mt-4 text-3xl font-black tracking-tight text-slate-950 sm:text-5xl">From concern to a clear service plan.</h2>
             <p className="mt-5 text-lg leading-8 text-slate-600">Whether your device needs advice, troubleshooting or a repair assessment, start with a clear description of what is going on.</p>
-            <a href="tel:+18332162311" className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#0C7974] px-6 py-3 font-bold text-white hover:bg-[#096761]"><PhoneCall size={18} aria-hidden="true" /> (833) 216-2311</a>
+            <a href="tel:+18332162311" className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#0C7974] px-6 py-3 font-bold text-white hover:bg-[#096761]"><PhoneCall size={18} aria-hidden="true" /> +1 (833) 216-2311</a>
           </div>
           <ol className="space-y-4">
             {[
@@ -214,8 +214,9 @@ export default function DashProtectionPage() {
             <h2 className="mt-4 text-3xl font-black tracking-tight text-slate-950 sm:text-5xl">Get help finding the right next step.</h2>
             <p className="mt-5 text-lg leading-8 text-slate-600">Tell the ResolveUS team what device you have, what is happening and where you need service. We&apos;ll review what we can offer.</p>
             <div className="mt-8 space-y-4 rounded-2xl border border-teal-100 bg-white/80 p-6">
-              <a href="tel:+18332162311" className="flex items-center gap-3 font-extrabold text-slate-900 hover:text-teal-700"><PhoneCall className="text-teal-700" size={20} aria-hidden="true" /> (833) 216-2311</a>
-              <a href="mailto:support@resolve-us.com" className="flex items-center gap-3 break-all font-bold text-slate-900 hover:text-teal-700"><Headphones className="text-teal-700" size={20} aria-hidden="true" /> support@resolve-us.com</a>
+              <a href="tel:+18332162311" className="flex items-center gap-3 font-extrabold text-slate-900 hover:text-teal-700"><PhoneCall className="text-teal-700" size={20} aria-hidden="true" /> +1 (833) 216-2311</a>
+              <p className="text-xs text-slate-600">International: +18332162311</p>
+               <a href="mailto:support@resolve-us.com" className="flex items-center gap-3 break-all font-bold text-slate-900 hover:text-teal-700"><Headphones className="text-teal-700" size={20} aria-hidden="true" /> support@resolve-us.com</a>
               <p className="text-xs leading-6 text-slate-600">Operator, service terms and consumer protections are described in the ResolveUS legal pages. We do not collect payment-card information through this website.</p>
             </div>
             <Link href="/services" className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-teal-800 hover:underline">Looking for everyday consultations instead? <ArrowRight size={17} aria-hidden="true" /></Link>

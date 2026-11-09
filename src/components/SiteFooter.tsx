@@ -44,8 +44,9 @@ export default function SiteFooter() {
           <ul className="mt-4 space-y-2 text-sm">
             {supportLinks.map((link) => <li key={link.href}><Link className="text-slate-600 transition hover:text-[#0B2540] hover:underline" href={link.href}>{link.label}</Link></li>)}
           </ul>
-          <a className="mt-5 flex items-center gap-2 text-lg font-bold text-[#0B2540] hover:text-[#0C7974]" href="tel:+18332162311"><PhoneCall size={18} aria-hidden="true" /> (833) 216-2311</a>
-          <a className="mt-5 inline-block text-sm font-medium text-[#0C7974] hover:underline" href="mailto:support@resolve-us.com">support@resolve-us.com</a>
+          <a className="mt-5 flex items-center gap-2 text-lg font-bold text-[#0B2540] hover:text-[#0C7974]" href="tel:+18332162311"><PhoneCall size={18} aria-hidden="true" /> +1 (833) 216-2311</a>
+          <p className="mt-1 text-xs text-slate-600">International: +18332162311</p>
+           <a className="mt-5 inline-block text-sm font-medium text-[#0C7974] hover:underline" href="mailto:support@resolve-us.com">support@resolve-us.com</a>
           <p className="mt-2 text-xs text-slate-600">Refund requests and account questions: email support.</p>
           <a className="mt-3 block text-sm font-medium text-[#0C7974] hover:underline" href="/contact#consultation-form">Start a consultation</a>
         </div>

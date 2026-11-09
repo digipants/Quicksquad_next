@@ -308,6 +308,26 @@ test('navigation is concise and topic links guide enquiries', () => {
   assert.match(footer, /Legal operator: A V Food Factory/);
 });
 
+test('international phone presentation is visible, consistent and clickable', () => {
+  const homepage = fs.readFileSync('src/app/page.tsx', 'utf8');
+  const contact = fs.readFileSync('src/app/contact/page.tsx', 'utf8');
+  const footer = fs.readFileSync('src/components/SiteFooter.tsx', 'utf8');
+  const header = fs.readFileSync('src/components/SiteHeader.tsx', 'utf8');
+  const dash = fs.readFileSync('src/app/dashprotection/page.tsx', 'utf8');
+  for (const [path, source] of [
+    ['home', homepage],
+    ['contact', contact],
+    ['footer', footer],
+    ['dashprotection', dash],
+  ]) {
+    assert.match(source, /href="tel:\+18332162311"/, path);
+    assert.match(source, /\+1 \(833\) 216-2311/, path);
+    assert.match(source, /International: \+18332162311/, path);
+  }
+  assert.match(header, /\+1 \(833\) 216-2311/);
+  assert.doesNotMatch([homepage, contact, footer, header, dash].join('\n'), /844.{0,8}369.{0,8}3312|18443693312/);
+});
+
 test('all customer-facing phone references use the confirmed active ResolveUS line', () => {
   const sources = [
     'src/components/SiteHeader.tsx',

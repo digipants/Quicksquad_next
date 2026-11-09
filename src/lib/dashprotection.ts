@@ -22,7 +22,7 @@ export const dashPlans = [
 ] as const;
 
 export const dashFaqs = [
-  { question: "Is DashProtection part of ResolveUS?", answer: "Yes. DashProtection is the device-care service experience within ResolveUS. You can contact the same customer service team using support@resolve-us.com or (844) 369-3312." },
+  { question: "Is DashProtection part of ResolveUS?", answer: "Yes. DashProtection is the device-care service experience within ResolveUS. You can contact the same customer service team using support@resolve-us.com or (833) 216-2311." },
   { question: "Can you assist remotely or at my location?", answer: "DashProtection handles enquiries for remote and on-site device services. Availability of remote access, technician visits, in-store assistance and supported locations must be confirmed with our team before booking. Never share passwords or one-time codes in this form." },
   { question: "Are repairs or replacements guaranteed?", answer: "No repair outcome, technician visit or replacement is guaranteed by submitting an enquiry. We first review the device, location, issue and available service options and confirm any applicable scope and costs." },
   { question: "Are protection plans billed automatically on this website?", answer: "No. The displayed monthly amounts are plan rates for enquiries. This website does not take payments or initiate renewals; our team confirms coverage, available features, service period and payment arrangements separately before you agree." },

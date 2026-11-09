@@ -52,7 +52,7 @@ export default function DashProtectionEnquiry() {
       setValues(initial);
       setStatus({ type: "success", message: result.message || "Your device-care enquiry has been received." });
     } catch {
-      setStatus({ type: "error", message: "Connection problem. Please try again or call (844) 369-3312." });
+      setStatus({ type: "error", message: "Connection problem. Please try again or call (833) 216-2311." });
     } finally {
       submitting.current = false;
       setLoading(false);
@@ -111,7 +111,7 @@ export default function DashProtectionEnquiry() {
           {status.type === "success" && <CheckCircle2 className="mr-2 inline align-middle" size={18} aria-hidden="true" />}{status.message}
         </p>}
       </form>
-      <p className="mt-6 flex flex-wrap items-center gap-2 border-t border-slate-100 pt-5 text-sm text-slate-600"><PhoneCall size={17} aria-hidden="true" /> Prefer to talk? <a className="font-bold text-teal-800 hover:underline" href="tel:+18443693312">(844) 369-3312</a></p>
+      <p className="mt-6 flex flex-wrap items-center gap-2 border-t border-slate-100 pt-5 text-sm text-slate-600"><PhoneCall size={17} aria-hidden="true" /> Prefer to talk? <a className="font-bold text-teal-800 hover:underline" href="tel:+18332162311">(833) 216-2311</a></p>
     </div>
   );
 }

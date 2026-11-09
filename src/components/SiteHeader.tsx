@@ -44,8 +44,8 @@ export default function SiteHeader() {
         </nav>
 
         <div className="hidden shrink-0 items-center gap-2 xl:flex">
-          <a href="tel:+18443693312" className="hidden items-center gap-2 rounded-full border border-[#0C7974] px-3 py-2 text-sm font-bold text-[#0B2540] transition hover:bg-teal-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0C7974] 2xl:inline-flex">
-            <PhoneCall size={17} aria-hidden="true" /> (844) 369-3312
+          <a href="tel:+18332162311" className="hidden items-center gap-2 rounded-full border border-[#0C7974] px-3 py-2 text-sm font-bold text-[#0B2540] transition hover:bg-teal-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0C7974] 2xl:inline-flex">
+            <PhoneCall size={17} aria-hidden="true" /> (833) 216-2311
           </a>
           <Link href="/contact#consultation-form" className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#0C7974] px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-[#096761] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0C7974] focus-visible:ring-offset-2">
             Get Consultation
@@ -78,8 +78,8 @@ export default function SiteHeader() {
                 {item.label}
               </Link>
             ))}
-            <a href="tel:+18443693312" className="mt-2 inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[#0C7974] px-4 py-3 text-center font-semibold text-[#0B2540] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0C7974]">
-              <PhoneCall size={18} aria-hidden="true" /> (844) 369-3312
+            <a href="tel:+18332162311" className="mt-2 inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[#0C7974] px-4 py-3 text-center font-semibold text-[#0B2540] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0C7974]">
+              <PhoneCall size={18} aria-hidden="true" /> (833) 216-2311
             </a>
             <Link href="/contact#consultation-form" onClick={() => setOpen(false)} className="mt-2 inline-flex min-h-12 items-center justify-center rounded-full bg-[#0C7974] px-4 py-3 text-center font-bold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0C7974] focus-visible:ring-offset-2">
               Get Consultation

@@ -89,7 +89,7 @@ const structuredData = {
       description: "AI-powered consumer consultation platform for everyday online tasks and questions.",
       url: "https://resolve-us.com",
       legalName: "A V Food Factory",
-      telephone: "+1-844-369-3312",
+      telephone: "+1-833-216-2311",
     },
     {
       "@type": "WebSite",

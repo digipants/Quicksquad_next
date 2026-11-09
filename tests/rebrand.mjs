@@ -308,14 +308,38 @@ test('navigation is concise and topic links guide enquiries', () => {
   assert.match(footer, /Legal operator: A V Food Factory/);
 });
 
+test('all customer-facing phone references use the confirmed active ResolveUS line', () => {
+  const sources = [
+    'src/components/SiteHeader.tsx',
+    'src/components/SiteFooter.tsx',
+    'src/app/contact/page.tsx',
+    'src/app/dashprotection/page.tsx',
+    'src/components/DashProtectionEnquiry.tsx',
+    'src/app/layout.tsx',
+    'src/app/api/send-email/route.ts',
+    'src/lib/dashprotection.ts',
+  ];
+  const application = sources.map(file => fs.readFileSync(file, 'utf8')).join('\n');
+  assert.doesNotMatch(application, /844.{0,8}369.{0,8}3312|18443693312/);
+  assert.match(application, /\(833\) 216-2311/);
+  assert.match(application, /tel:\+18332162311/);
+  assert.match(application, /telephone: "\+1-833-216-2311"/);
+  for (const file of sources) {
+    const text = fs.readFileSync(file, 'utf8');
+    for (const [, dial] of text.matchAll(/tel:([^"']+)/g)) {
+      assert.equal(dial, '+18332162311', file);
+    }
+  }
+});
+
 test('new phone number and public brand presentation are consistent', () => {
   const files = ['src/components/SiteHeader.tsx', 'src/components/SiteFooter.tsx', 'src/app/contact/page.tsx', 'src/app/page.tsx', 'src/app/api/send-email/route.ts', 'src/app/layout.tsx'];
   const application = files.map(file => fs.readFileSync(file, 'utf8')).join('\n');
   assert.ok(!application.includes('312-1044') && !application.includes('18443121044'));
-  assert.ok(application.includes('(844) 369-3312') && application.includes('+18443693312'));
+  assert.ok(application.includes('(833) 216-2311') && application.includes('+18332162311'));
   for (const file of ['src/components/SiteHeader.tsx', 'src/components/SiteFooter.tsx', 'src/app/contact/page.tsx', 'src/app/page.tsx']) {
     const source = fs.readFileSync(file, 'utf8');
-    for (const match of source.matchAll(/tel:([^\"']+)/g)) assert.equal(match[1], '+18443693312');
+    for (const match of source.matchAll(/tel:([^\"']+)/g)) assert.equal(match[1], '+18332162311');
   }
   const faq = fs.readFileSync('src/app/faq-page/page.tsx', 'utf8');
   assert.match(faq, /does not accept or record payments/);

@@ -23,3 +23,11 @@ This prototype does not change DNS, Ads campaigns, Google tag IDs, consent state
 
 ## Health-check correction
 The Google upstream host already encodes tag G-K82JB039DQ; sending X-Gtg-Tag-Id as well caused 'Tag ID is in both Header and Host subdomain'. The header was removed; the host remains fixed.
+
+## First-party integration — production only
+
+The website loads the consented GA4/Ads Google tag script from `/resolve-gtg-2026/` (tag G-K82JB039DQ) after analytics or ad measurement consent. The fallback is the previous `https://www.googletagmanager.com/gtag/js?id=G-K82JB039DQ` tag URL, activated only when the first-party script load fails. Existing GA4 (G-K82JB039DQ), Google Ads (AW-18376694937), consent defaults and settings remain unchanged.
+
+The edge proxy now forwards the incoming cookie header and preserves Google Set-Cookie responses, as required by the documented manual gateway setup. The proxy retains a fixed upstream and forwards query strings; arbitrary Authorization and browser-supplied geography are not passed along.
+
+Production validation remains necessary with Tag Assistant (check Hits Sent path /resolve-gtg-2026), GA4 Realtime, Ads conversion diagnostics and rejection/analytics-only/accept-all privacy choices. A successful production build or both diagnostic URLs returning 'ok' does not establish eligibility for the promotional credit, and Google's unsupported-platform warning may remain.

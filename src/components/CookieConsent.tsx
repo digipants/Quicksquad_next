@@ -21,6 +21,7 @@ export default function CookieConsent() {
   const [initialized, setInitialized] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [enableGoogleTag, setEnableGoogleTag] = useState(false);
+  const [useStandardTagFallback, setUseStandardTagFallback] = useState(false);
   const initializedGoogle = useRef(false);
   const configuredMeasurement = useRef({ analytics: false, advertising: false });
 
@@ -91,9 +92,17 @@ export default function CookieConsent() {
 
   return (
     <>
-      {enableGoogleTag && (
+      {enableGoogleTag && !useStandardTagFallback && (
         <Script
-          id="resolve-us-consented-google-tag"
+          id="resolve-us-consented-google-tag-gateway"
+          src="/resolve-gtg-2026/"
+          strategy="afterInteractive"
+          onError={() => setUseStandardTagFallback(true)}
+        />
+      )}
+      {enableGoogleTag && useStandardTagFallback && (
+        <Script
+          id="resolve-us-consented-google-tag-fallback"
           src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}
           strategy="afterInteractive"
         />

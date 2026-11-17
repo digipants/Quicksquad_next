@@ -34,9 +34,9 @@ test('Google tag gateway uses an isolated path and trusted location headers', as
     assert.equal(forwarded.options.headers.get('X-Forwarded-CountryRegion'), 'US-CA');
     assert.equal(forwarded.options.headers.get('X-Forwarded-For'), '203.0.113.25');
     assert.equal(forwarded.options.headers.get('X-Gtg-Tag-Id'), null); // Tag ID is already in the Google host
-    assert.equal(forwarded.options.headers.get('cookie'), null);
+    assert.equal(forwarded.options.headers.get('cookie'), 'visitor-session=secret');
     assert.equal(forwarded.options.headers.get('authorization'), null);
-    assert.equal(output.headers.get('set-cookie'), null);
+    assert.equal(output.headers.get('set-cookie'), 'abc=123');
     assert.equal((await handler(new Request('https://resolve-us.com/resolve-gtg-2026/healthy', { method: 'PUT' }), ctx)).status, 405);
     assert.equal((await handler(new Request('https://resolve-us.com/different-path'), ctx)).status, 404);
   } finally { global.fetch = originalFetch; }
@@ -49,5 +49,26 @@ test('upstream failure is contained to gateway path', async () => {
     const result = await handler(new Request('https://resolve-us.com/resolve-gtg-2026/healthy'), ctx);
     assert.equal(result.status, 502);
     assert.match(await result.text(), /unavailable/i);
+  } finally { global.fetch = originalFetch; }
+});
+
+test('consented Google tag uses first-party gateway with a standard-script fallback', () => {
+  const source = fs.readFileSync('src/components/CookieConsent.tsx', 'utf8');
+  assert.match(source, /src="\/resolve-gtg-2026\/"/);
+  assert.match(source, /setUseStandardTagFallback\(true\)/);
+  assert.match(source, /useStandardTagFallback &&/);
+  assert.match(source, /googletagmanager\.com\/gtag\/js/);
+  assert.match(source, /enableGoogleTag && !useStandardTagFallback/);
+  assert.match(source, /setEnableGoogleTag\(false\)/);
+});
+
+test('gateway rejects incorrect script content type so the loader can fall back', async () => {
+  const originalFetch = global.fetch;
+  global.fetch = async () => new Response('unexpected response', {
+    status: 200, headers: { 'Content-Type': 'text/plain' }
+  });
+  try {
+    const result = await handler(new Request('https://resolve-us.com/resolve-gtg-2026/'), ctx);
+    assert.equal(result.status, 502);
   } finally { global.fetch = originalFetch; }
 });

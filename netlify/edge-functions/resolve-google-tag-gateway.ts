@@ -33,7 +33,11 @@ export default async function handler(request: Request, context: EdgeContext): P
     const value = request.headers.get(name);
     if (value) headers.set(name, value);
   }
-  headers.set("X-Gtg-Implementation", "NetlifyEdge");
+  // The upstream host already selects the tag. Do not duplicate X-Gtg-Tag-Id.
+  // Google's manual gateway requires forwarding the first-party cookie header,
+  // which is sent by browsers on this consent-gated tag path.
+  const visitorCookies = request.headers.get("cookie");
+  if (visitorCookies) headers.set("Cookie", visitorCookies);
 
   const country = context.geo?.country?.code?.toUpperCase();
   const region = context.geo?.subdivision?.code?.toUpperCase();
@@ -76,10 +80,22 @@ export default async function handler(request: Request, context: EdgeContext): P
       signal: AbortSignal.timeout(10000),
     });
     const responseHeaders = new Headers(upstream.headers);
-    // Do not reflect upstream cookies onto the first-party domain during tests.
-    responseHeaders.delete("set-cookie");
+    // Preserve Google's Set-Cookie headers, required for the documented
+    // first-party gateway behavior. Browser cookie scope rules still apply.
     responseHeaders.delete("content-length");
     responseHeaders.set("X-Content-Type-Options", "nosniff");
+    // If the script endpoint stops serving JavaScript, return a script-load
+    // error so CookieConsent can fall back to the original Google URL.
+    const scriptRequest = request.method === "GET" &&
+      source.pathname === PATH + "/" &&
+      !source.searchParams.has("validate_geo");
+    if (scriptRequest && upstream.ok &&
+        !/javascript/i.test(responseHeaders.get("content-type") ?? "")) {
+      return new Response("Gateway script unavailable", {
+        status: 502,
+        headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" },
+      });
+    }
     return new Response(request.method === "HEAD" ? null : upstream.body, {
       status: upstream.status,
       headers: responseHeaders,

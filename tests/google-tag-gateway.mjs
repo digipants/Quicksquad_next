@@ -33,7 +33,7 @@ test('Google tag gateway uses an isolated path and trusted location headers', as
     assert.equal(forwarded.options.headers.get('X-Forwarded-Region'), 'CA');
     assert.equal(forwarded.options.headers.get('X-Forwarded-CountryRegion'), 'US-CA');
     assert.equal(forwarded.options.headers.get('X-Forwarded-For'), '203.0.113.25');
-    assert.equal(forwarded.options.headers.get('X-Gtg-Tag-Id'), 'G-K82JB039DQ');
+    assert.equal(forwarded.options.headers.get('X-Gtg-Tag-Id'), null); // Tag ID is already in the Google host
     assert.equal(forwarded.options.headers.get('cookie'), null);
     assert.equal(forwarded.options.headers.get('authorization'), null);
     assert.equal(output.headers.get('set-cookie'), null);

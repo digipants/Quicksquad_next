@@ -20,3 +20,6 @@ Netlify Edge supplies trusted country, subdivision, coordinates and client IP. U
 5. If either test fails, do not change the Google tag script; fix the isolated route or revert this commit.
 
 This prototype does not change DNS, Ads campaigns, Google tag IDs, consent state or deploy settings.
+
+## Health-check correction
+The Google upstream host already encodes tag G-K82JB039DQ; sending X-Gtg-Tag-Id as well caused 'Tag ID is in both Header and Host subdomain'. The header was removed; the host remains fixed.

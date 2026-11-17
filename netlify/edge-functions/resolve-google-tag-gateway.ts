@@ -14,7 +14,7 @@ type EdgeContext = { geo?: EdgeGeo; ip?: string };
  * Do not migrate tags until health, geo, consent and Tag Assistant are verified.
  */
 const PATH = "/resolve-gtg-2026";
-const TAG_ID = "G-K82JB039DQ";
+// Tag ID is encoded in the upstream host; do NOT repeat it in X-Gtg-Tag-Id.
 const GOOGLE_ORIGIN = "https://g-k82jb039dq.fps.goog";
 const MAX_POST_BYTES = 64 * 1024;
 
@@ -33,7 +33,6 @@ export default async function handler(request: Request, context: EdgeContext): P
     const value = request.headers.get(name);
     if (value) headers.set(name, value);
   }
-  headers.set("X-Gtg-Tag-Id", TAG_ID);
   headers.set("X-Gtg-Implementation", "NetlifyEdge");
 
   const country = context.geo?.country?.code?.toUpperCase();

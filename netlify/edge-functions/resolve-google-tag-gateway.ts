@@ -1,4 +1,12 @@
-import type { Config, Context } from "@netlify/edge-functions";
+// Standalone types keep Next.js typechecking independent of Netlify's Deno-only type package.
+type EdgeGeo = {
+  country?: { code?: string };
+  subdivision?: { code?: string };
+  city?: string;
+  latitude?: number | string;
+  longitude?: number | string;
+};
+type EdgeContext = { geo?: EdgeGeo; ip?: string };
 
 /**
  * Isolated production-only Google tag gateway routing test.
@@ -10,7 +18,7 @@ const TAG_ID = "G-K82JB039DQ";
 const GOOGLE_ORIGIN = "https://g-k82jb039dq.fps.goog";
 const MAX_POST_BYTES = 64 * 1024;
 
-export default async function handler(request: Request, context: Context): Promise<Response> {
+export default async function handler(request: Request, context: EdgeContext): Promise<Response> {
   const source = new URL(request.url);
   if (!source.pathname.startsWith(PATH + "/")) {
     return new Response("Not found", { status: 404 });
@@ -85,4 +93,4 @@ export default async function handler(request: Request, context: Context): Promi
   }
 }
 
-export const config: Config = { path: PATH + "/*" };
+export const config = { path: PATH + "/*" };

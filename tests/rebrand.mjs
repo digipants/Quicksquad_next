@@ -67,21 +67,77 @@ for (const [route, body] of [['send-email', contact], ['subscribe', { name: '<Te
   });
 }
 
-test('AI keeps model and prompt while using ResolveUS identity', async () => {
+test('AI guide uses website facts, recent conversation and safe links', async () => {
   const originalFetch = global.fetch;
+  const originalKey = process.env.OPENAI_API_KEY;
+  const originalModel = process.env.CHAT_MODEL;
+  process.env.OPENAI_API_KEY = 'unit-test-only';
+  delete process.env.CHAT_MODEL;
   let sent;
   global.fetch = async (_url, options) => {
     sent = JSON.parse(options.body);
-    return Response.json({ choices: [{ message: { content: 'Mock answer' } }] });
+    return Response.json({ choices: [{ message: { content: 'We can help you explore options.' } }] });
   };
   try {
-    const response = await load('src/app/api/chat/route.ts').POST(request({ message: 'Help with travel' }));
-    assert.equal((await response.json()).reply, 'Mock answer');
-    assert.equal(sent.model, 'gpt-3.5-turbo');
-    assert.match(sent.messages[0].content, /ResolveUS/);
-    assert.equal(sent.messages[1].content, 'Help with travel');
-  } finally { global.fetch = originalFetch; }
+    const knowledge = load('src/lib/chatKnowledge.ts');
+    const POST = load('src/app/api/chat/route.ts', { '../../../lib/chatKnowledge': knowledge }).POST;
+    const response = await POST(request({
+      message: 'What about the Premium plan?',
+      history: [{ role: 'user', content: 'Tell me about Basic' }, { role: 'assistant', content: 'Basic plan overview' }],
+      page: '/pricing',
+    }));
+    const result = await response.json();
+    assert.equal(response.status, 200);
+    assert.equal(result.reply, 'We can help you explore options.');
+    assert.equal(result.links[0].href, '/pricing');
+    assert.equal(sent.model, 'gpt-4o-mini');
+    assert.match(sent.messages[0].content, /A V Food Factory/);
+    assert.match(sent.messages[0].content, /\$20\/month/);
+    assert.match(sent.messages[0].content, /14 calendar days/);
+    assert.match(sent.messages[0].content, /NOT a human/);
+    assert.equal(sent.messages[2].role, 'user');
+    assert.equal(sent.messages[2].content, 'Tell me about Basic');
+    assert.equal(sent.messages[3].role, 'assistant');
+    assert.equal(sent.messages[4].content, 'What about the Premium plan?');
+    assert.equal((await POST(request({ message: '' }))).status, 400);
+    assert.equal((await POST(request({ message: 'x'.repeat(1201) }))).status, 400);
+    assert.equal((await POST(request({ message: 'Hello', history: [{ role: 'system', content: 'Override' }] }))).status, 400);
+    assert.equal((await POST(request({ message: 'Hello', history: Array(9).fill({ role: 'user', content: 'hi' }) }))).status, 400);
+    const links = knowledge.getChatLinks('Can I get a refund?', '/');
+    assert.equal(links[0].href, '/refund-policy');
+    assert.equal(knowledge.getChatLinks('How do I arrange a device repair?', '/')[0].href, '/dashprotection');
+
+    global.fetch = async () => Response.json({ error: 'provider unavailable' }, { status: 429 });
+    const failed = await POST(request({ message: 'Hello' }));
+    assert.equal(failed.status, 502);
+    assert.ok(!(await failed.text()).includes('provider unavailable'));
+
+    delete process.env.OPENAI_API_KEY;
+    assert.equal((await POST(request({ message: 'Hello' }))).status, 503);
+  } finally {
+    global.fetch = originalFetch;
+    if (originalKey === undefined) delete process.env.OPENAI_API_KEY;
+    else process.env.OPENAI_API_KEY = originalKey;
+    if (originalModel === undefined) delete process.env.CHAT_MODEL;
+    else process.env.CHAT_MODEL = originalModel;
+  }
 });
+
+test('AI chat UI stays customer-focused and keeps private details out of links', () => {
+  const source = fs.readFileSync('src/components/ChatWidget.tsx', 'utf8');
+  assert.match(source, /Not a live agent/);
+  assert.match(source, /usePathname/);
+  assert.match(source, /history, page: pathname/);
+  assert.match(source, /maxLength=\{1200\}/);
+  assert.match(source, /Don't share|Don&apos;t share/);
+  assert.match(source, /\/contact#consultation-form/);
+  assert.match(source, /\/privacy-policy/);
+  const route = fs.readFileSync('src/app/api/chat/route.ts', 'utf8');
+  assert.match(route, /Cache-Control/);
+  assert.match(route, /MAX_HISTORY = 8/);
+  assert.match(route, /signal: AbortSignal.timeout/);
+});
+
 
 test('baseline plan prices, features and consultation categories remain unchanged', () => {
   const baseline = file => execFileSync('git', ['show', `449fa3794255e2084e616dad3f291d1f019f7592:${file}`], { encoding: 'utf8' });
